@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Club Challenge&reg;</h1>
+    <p class="lead">
+        Club Challenge is a social network made for you. You wanna challenge your buddy in a some sport? Or maybe a PC game? A board game? You can do it now in real time!
+    </p>
+    <p class="lead">
+        <img src="Content/social-networks.jpg" class="img-responsive" alt="Club Challenge">
+    </p>
+    @if (!Request.IsAuthenticated)
+    {
+        <p class="lead">
+            Do you have and account yet? Your friends are waiting for you!
+        </p>
+
+        <p><a href="Account/Login" class="btn btn-primary btn-large">Log in &raquo;</a></p>
+    }
+</div>
