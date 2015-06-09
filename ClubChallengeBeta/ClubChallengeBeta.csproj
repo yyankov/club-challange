@@ -208,6 +208,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClubController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsersClubController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -307,6 +308,8 @@
     <Content Include="Views\Club\Details.cshtml" />
     <Content Include="Views\Club\Edit.cshtml" />
     <Content Include="Views\Club\Index.cshtml" />
+    <Content Include="Views\UsersClub\Details.cshtml" />
+    <Content Include="Views\UsersClub\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
