@@ -61,8 +61,15 @@ namespace ClubChallengeBeta.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        //[Required]
-        //[Display(Name = "Account Type")]
-        //public AspNetRole Role { get; set; }
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
+        [Display(Name = "Email Address")]
+        public string EmailAddress { get; set; }
+
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression("^(?!0+$)(\\+\\d{1,3}[- ]?)?(?!0+$)\\d{10,15}$", ErrorMessage = "Please enter valid phone number")]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
     }
 }

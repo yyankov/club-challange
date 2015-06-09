@@ -105,7 +105,7 @@ namespace ClubChallengeBeta.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser() { UserName = model.UserName };
+                    var user = new ApplicationUser() { UserName = model.UserName,Email=model.EmailAddress,PhoneNumber=model.PhoneNumber };
                     var result = await UserManager.CreateAsync(user, model.Password);
 
                     var roleStore = new RoleStore<IdentityRole>(context);
