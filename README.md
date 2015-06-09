@@ -27,6 +27,11 @@ Run, Log in, have fun
 
 08.01.2015 - Project added to git. Version set to 0.1
 
+10.01.2015 - Version 2.0
+* Added file storage and upload functionalties
+* Extended user profiles
+* Added clubs with basic views and functionalities
+
 ## Credits
 
 Dimitar Kaludov
