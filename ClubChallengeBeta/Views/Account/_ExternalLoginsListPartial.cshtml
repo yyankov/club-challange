@@ -24,6 +24,7 @@
                 <p>
                     @foreach (AuthenticationDescription p in loginProviders)
                     {
+                        //TODO add css class fa-microsoft
                         var iconName = p.AuthenticationType == "Microsoft" ? "windows" : p.AuthenticationType.ToLower();
                         <button type="submit" class="btn btn-block btn-social btn-@p.AuthenticationType.ToLower()" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">
                             <i class="fa fa-@iconName"></i>

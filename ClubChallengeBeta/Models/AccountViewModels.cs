@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ClubChallengeBeta.App_Data;
 
 namespace ClubChallengeBeta.Models
 {
@@ -59,5 +60,9 @@ namespace ClubChallengeBeta.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        //[Required]
+        //[Display(Name = "Account Type")]
+        //public AspNetRole Role { get; set; }
     }
 }

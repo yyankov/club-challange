@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System.Configuration;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
@@ -8,6 +9,17 @@ namespace ClubChallengeBeta
 {
     public partial class Startup
     {
+        #region static
+        static string microsoftKey = ConfigurationManager.AppSettings.Get("microsoftKey");
+        static string microsoftId = ConfigurationManager.AppSettings.Get("microsoftId");
+        static string googleKey = ConfigurationManager.AppSettings.Get("googleKey");
+        static string googleId = ConfigurationManager.AppSettings.Get("googleId");
+        static string facebookKey = ConfigurationManager.AppSettings.Get("facebookKey");
+        static string facebookId = ConfigurationManager.AppSettings.Get("facebookId");
+        static string twitterKey = ConfigurationManager.AppSettings.Get("twitterKey");
+        static string twitterId = ConfigurationManager.AppSettings.Get("twitterId");
+        #endregion
+
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
