@@ -15,6 +15,10 @@
         <AssociationConnector Association="ClubChallengeModel.FK_AspNetUsers_Clubs" />
         <AssociationConnector Association="ClubChallengeModel.FK_Clubs_AspNetUsers" />
         <AssociationConnector Association="ClubChallengeModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="ClubChallengeModel.SingleChallenge" Width="1.5" PointX="5.25" PointY="10.75" />
+        <AssociationConnector Association="ClubChallengeModel.FK_SingleChallenges_AspNetUsers" />
+        <AssociationConnector Association="ClubChallengeModel.FK_SingleChallenges_AspNetUsers1" />
+        <AssociationConnector Association="ClubChallengeModel.FK_SingleChallenges_AspNetUsers2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

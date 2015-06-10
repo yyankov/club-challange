@@ -21,6 +21,9 @@ namespace ClubChallengeBeta.App_Data
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.Clubs = new HashSet<Club>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.SingleChallenges = new HashSet<SingleChallenge>();
+            this.SingleChallenges1 = new HashSet<SingleChallenge>();
+            this.SingleChallenges2 = new HashSet<SingleChallenge>();
         }
     
         public string Id { get; set; }
@@ -46,5 +49,11 @@ namespace ClubChallengeBeta.App_Data
         public virtual ICollection<Club> Clubs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SingleChallenge> SingleChallenges { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SingleChallenge> SingleChallenges1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SingleChallenge> SingleChallenges2 { get; set; }
     }
 }

@@ -171,6 +171,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\SingleChallenge.cs">
+      <DependentUpon>ClubChallengeEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -208,6 +211,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClubController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SingleChallengesController.cs" />
     <Compile Include="Controllers\UsersClubController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -312,6 +316,11 @@
     <Content Include="Views\UsersClub\Details.cshtml" />
     <Content Include="Views\UsersClub\Index.cshtml" />
     <Content Include="Views\Club\Leave.cshtml" />
+    <Content Include="Views\SingleChallenges\Create.cshtml" />
+    <Content Include="Views\SingleChallenges\Delete.cshtml" />
+    <Content Include="Views\SingleChallenges\Details.cshtml" />
+    <Content Include="Views\SingleChallenges\Edit.cshtml" />
+    <Content Include="Views\SingleChallenges\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
