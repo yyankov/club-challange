@@ -315,9 +315,9 @@
     <Content Include="Views\Club\Index.cshtml" />
     <Content Include="Views\UsersClub\Details.cshtml" />
     <Content Include="Views\UsersClub\Index.cshtml" />
-    <Content Include="Views\Club\Leave.cshtml" />
     <Content Include="Views\SingleChallenges\Details.cshtml" />
     <Content Include="Views\SingleChallenges\Index.cshtml" />
+    <Content Include="Views\SingleChallenges\MyChallenges.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

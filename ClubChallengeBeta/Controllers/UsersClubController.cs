@@ -63,7 +63,7 @@ namespace ClubChallengeBeta.Controllers
 
                 }
             }
-            return RedirectToAction("Details", new { id = id });
+            return RedirectToAction("MyChallenges","SingleChallenges");
         }
 
 
