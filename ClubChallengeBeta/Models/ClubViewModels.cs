@@ -6,6 +6,18 @@ using ClubChallengeBeta.App_Data;
 
 namespace ClubChallengeBeta.Models
 {
+    public class UserViewModel
+    {
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+        public int Score { get; set; }
+        public UserViewModel(AspNetUser user)
+        {
+            UserId = user.Id;
+            UserName = user.UserName;
+            Score = user.Score;
+        }
+    }
     public class ClubViewModel
     {
         public int ClubId { get; set; }
@@ -15,6 +27,7 @@ namespace ClubChallengeBeta.Models
         public string OwnerId { get; set; }
         public int UsersCount { get; set; }
         public bool OwnClub { get; set; }
+        public List<UserViewModel> Users { get; set; }
 
         public ClubViewModel(Club club, AspNetUser user)
         {
