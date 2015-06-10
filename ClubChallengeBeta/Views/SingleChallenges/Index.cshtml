@@ -1,69 +1,63 @@
 ﻿@model IEnumerable<ClubChallengeBeta.App_Data.SingleChallenge>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.User1Accepted)
+            Challenger
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.User2Accepted)
+
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
+            Opponent
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Result)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser1.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser2.Email)
+            Result
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.User1Accepted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.User2Accepted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Result)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser1.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser2.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SinglesChallengeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SinglesChallengeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SinglesChallengeId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+            </td>
+            <td>
+                @if (item.User1Accepted)
+                {
+                    <i class="fa fa-lg fa-circle"></i>
+                }
+                else
+                {
+                    <i class="fa fa-lg fa-circle-o"></i>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUser1.UserName)
+            </td>
+            <td>
+                @if (item.User2Accepted)
+                {
+                    <i class="fa fa-lg fa-circle"></i>
+                }
+                else
+                {
+                    <i class="fa fa-lg fa-circle-o"></i>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+            <td>
+                @Html.ActionLink("Accept", "Accept", new { id = item.SinglesChallengeId }) |
+                @Html.ActionLink("Reject", "Reject", new { id = item.SinglesChallengeId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SinglesChallengeId })
+            </td>
+        </tr>
+    }
 
 </table>

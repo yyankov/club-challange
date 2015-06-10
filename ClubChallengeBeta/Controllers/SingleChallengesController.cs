@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ClubChallengeBeta.App_Data;
 
 namespace ClubChallengeBeta.Controllers
@@ -36,6 +37,7 @@ namespace ClubChallengeBeta.Controllers
             return View(singlechallenge);
         }
 
+        
 
         protected override void Dispose(bool disposing)
         {

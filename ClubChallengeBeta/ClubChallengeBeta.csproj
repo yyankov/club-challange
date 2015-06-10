@@ -316,10 +316,7 @@
     <Content Include="Views\UsersClub\Details.cshtml" />
     <Content Include="Views\UsersClub\Index.cshtml" />
     <Content Include="Views\Club\Leave.cshtml" />
-    <Content Include="Views\SingleChallenges\Create.cshtml" />
-    <Content Include="Views\SingleChallenges\Delete.cshtml" />
     <Content Include="Views\SingleChallenges\Details.cshtml" />
-    <Content Include="Views\SingleChallenges\Edit.cshtml" />
     <Content Include="Views\SingleChallenges\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />

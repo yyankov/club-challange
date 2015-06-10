@@ -34,7 +34,7 @@ namespace ClubChallengeBeta.Controllers
             }
             return clubUser;
         }
-        // GET: /Clubs/
+
         public ActionResult Index()
         {
             var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
@@ -56,7 +56,7 @@ namespace ClubChallengeBeta.Controllers
             return View(clubSearch);
         }
 
-        // GET: /Clubs/Details/5
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -74,7 +74,7 @@ namespace ClubChallengeBeta.Controllers
             return View(new ClubViewModel(club, currentUser));
         }
 
-        // GET: /Clubs/Create
+
         [Authorize(Roles = "Club")]
         public ActionResult Create()
         {
@@ -112,7 +112,7 @@ namespace ClubChallengeBeta.Controllers
             return View(club);
         }
 
-        // GET: /Clubs/Edit/5
+
         [Authorize(Roles = "Club")]
         public ActionResult Edit(int? id)
         {
@@ -150,7 +150,7 @@ namespace ClubChallengeBeta.Controllers
             return View(club);
         }
 
-        // GET: /Clubs/Delete/5
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -165,7 +165,7 @@ namespace ClubChallengeBeta.Controllers
             return View(new ClubViewModel(club, db.AspNetUsers.Find(User.Identity.GetUserId())));
         }
 
-        // POST: /Clubs/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -205,7 +205,7 @@ namespace ClubChallengeBeta.Controllers
         }
 
 
-        [HttpGet]
+
         public ActionResult Leave(int id)
         {
             try
