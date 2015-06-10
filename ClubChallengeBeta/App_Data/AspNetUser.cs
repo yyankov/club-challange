@@ -40,6 +40,7 @@ namespace ClubChallengeBeta.App_Data
         public string UserName { get; set; }
         public Nullable<int> ClubId { get; set; }
         public int Score { get; set; }
+        public int Refusals { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
