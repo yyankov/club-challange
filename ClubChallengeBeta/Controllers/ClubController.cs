@@ -21,7 +21,7 @@ namespace ClubChallengeBeta.Controllers
     {
         private ClubChallengeEntities db = new ClubChallengeEntities();
 
-        public  bool IsClubUser(string userid)
+        public bool IsClubUser(string userid)
         {
             var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == userid);
             var clubUser = false;
@@ -41,14 +41,14 @@ namespace ClubChallengeBeta.Controllers
             var clubs = db.Clubs.ToList();
             foreach (var club in clubs)
             {
-                if(club.AspNetUser == null)
+                if (club.AspNetUser == null)
                 {
                     club.AspNetUser = db.AspNetUsers.SingleOrDefault(e => e.Id == club.OwnerId.Remove(club.OwnerId.Length - 3));
                 }
             }
             //TODO: check what broke?! Guid comming from db with extra \t
             var clubSearch = new ClubSearchViewModel();
-            clubSearch.Clubs = clubs.Select(e => new ClubViewModel(e, currentUser)).ToList();;
+            clubSearch.Clubs = clubs.Select(e => new ClubViewModel(e, currentUser)).ToList(); ;
 
             clubSearch.ClubUser = IsClubUser(User.Identity.GetUserId());
             clubSearch.HasClub = currentUser.Club != null;
@@ -75,7 +75,7 @@ namespace ClubChallengeBeta.Controllers
         }
 
         // GET: /Clubs/Create
-        [Authorize(Roles="Club")]
+        [Authorize(Roles = "Club")]
         public ActionResult Create()
         {
             return View(new Club());
@@ -99,8 +99,13 @@ namespace ClubChallengeBeta.Controllers
                     club.ImageData = System.IO.File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + "Content/cicon.png");
                     club.ImageMimeType = "png";
                 }
-                club.OwnerId = User.Identity.GetUserId();
+                var userId = User.Identity.GetUserId();
+                club.OwnerId = userId;
+                var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == userId);
                 db.Clubs.Add(club);
+                currentUser.Club = club;
+                db.Clubs.Add(club);
+                db.Entry(currentUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -215,7 +220,7 @@ namespace ClubChallengeBeta.Controllers
             }
             catch
             {
-                
+
             }
             return RedirectToAction("Details", new { id = id });
         }

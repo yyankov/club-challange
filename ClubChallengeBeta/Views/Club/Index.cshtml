@@ -1,13 +1,7 @@
 ﻿@model ClubChallengeBeta.Models.ClubSearchViewModel
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
-
 <p>
-    @if (ViewBag.ClubUser)
+    @if (ViewBag.ClubUser && !Model.HasClub)
     {
         @Html.ActionLink("Create your own club", "Create")
     }
@@ -57,7 +51,6 @@
             </td>
             <td>
                 <a class="glyphicon glyphicon-search" href="@Url.Action("Details", "Club", new { @id = item.ClubId })"></a>
-                <a class="fa fa-lg fa-trash" href="@Url.Action("Delete", "Club", new { @id = item.ClubId })"></a>
             </td>
         </tr>
     }
