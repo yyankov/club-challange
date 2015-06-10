@@ -45,7 +45,9 @@ Ivan Trendafilov
 
 Yordan Yankov
 
-...
+Veselin
+
+Zhuli91
 
 ## License
 
