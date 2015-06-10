@@ -15,6 +15,8 @@ ADO.NET and EF Tools for Visual Studio
 
 Run, Log in, have fun
 
+and ofc... dont try IE8 :D
+
 ## Contributing
 
 1. Fork it!
