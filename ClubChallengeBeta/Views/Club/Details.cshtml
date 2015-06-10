@@ -28,6 +28,22 @@
                             <br />
                             <i class="fa fa-lg fa-users details-icon"></i>@Model.UsersCount
                         </p>
+                        <p style="margin-top: 50px; margin-left: 10px;">
+                            <strong>Leaderboard</strong>
+                        </p>
+                        <table class="table" >
+                            <tr>
+                                <td>User</td>
+                                <td>Score</td>
+                            </tr>
+                            @foreach (var user in Model.Users)
+                            {
+                                <tr>
+                                    <td>@user.UserName</td>
+                                    <td>@user.Score</td>
+                                </tr>
+                            }
+                        </table>
                         <!-- Split button -->
                         <div class="btn-group">
                             @if (@User.Identity.GetUserId() == Model.OwnerId)
