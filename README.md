@@ -27,10 +27,13 @@ Run, Log in, have fun
 
 08.01.2015 - Project added to git. Version set to 0.1
 
-10.01.2015 - Version 2.0
+10.01.2015(early morning) - Version 0.2.0
 * Added file storage and upload functionalties
 * Extended user profiles
 * Added clubs with basic views and functionalities
+
+10.01.2015(Late Night) - Version 0.3.0
+* Add challenge functionalities
 
 ## Credits
 
