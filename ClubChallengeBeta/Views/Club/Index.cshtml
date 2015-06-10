@@ -1,13 +1,10 @@
-﻿@model IEnumerable<ClubChallengeBeta.App_Data.Club>
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Index</h2>
+﻿@model ClubChallengeBeta.Models.ClubSearchViewModel
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (ViewBag.ClubUser && !Model.HasClub)
+    {
+        @Html.ActionLink("Create your own club", "Create")
+    }
 </p>
 <table class="table">
     <tr>
@@ -15,37 +12,45 @@
 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.UserName)
+            Club Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Owner
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Text)
+            Text
+        </th>
+        <th>
+            Users
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Clubs)
     {
         <tr>
             <td>
                 <img class="user-tumb" src="@Url.Action("GetIcon", "Club", new { @id = item.ClubId })" />
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+                @if (item.OwnClub)
+                {
+                    <i class="glyphicon glyphicon-star"></i>
+                }
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.OwnerName)
             </td>
             <td>
                 <!--TODO:SEXIER text style hue hue-->
                 @Html.DisplayFor(modelItem => item.Text)
             </td>
             <td>
-                <a class="fa fa-ban" href="@Url.Action("Edit", "Club")"></a>
-                <a href="@Url.Action("Details", "Club")">a</a>
-                <a href="@Url.Action("Delete", "Club")">a</a>
+                @Html.DisplayFor(modelItem => item.UsersCount)
+            </td>
+            <td>
+                <a class="glyphicon glyphicon-search" href="@Url.Action("Details", "Club", new { @id = item.ClubId })"></a>
             </td>
         </tr>
     }
