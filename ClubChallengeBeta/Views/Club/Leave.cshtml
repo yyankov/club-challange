@@ -26,7 +26,7 @@
                         <p>
                             <i class="fa fa-lg fa-user-secret details-icon"></i>@Model.OwnerName
                             <br />
-                            <i class="fa fa-lg fa-users details-icon"></i>@Model.UsersCount
+                            <i class="fa fa-lg fa-users fa-details-icon"></i>@Model.UsersCount
                         </p>
                         <!-- Split button -->
                         <div class="btn-group">
@@ -35,9 +35,8 @@
                                 <a class="btn btn-sm btn-primary" href="@Url.Action("Edit", "Club", new { @id = Model.ClubId })"><i class="fa fa-lg fa-pencil button-icon"></i>Edit info</a>
                                 <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "Club", new { @id = Model.ClubId })"><i class="glyphicon glyphicon-off button-icon"></i>Delete</a>
                             }
-                            else if (Model.OwnClub)
-                            {
-                                <a class="btn btn-sm btn-primary" href="@Url.Action("Leave", "Club", new { @id = Model.ClubId })"><i class="glyphicon glyphicon-off button-icon"></i>Leave</a>
+                            else if (Model.OwnClub) { 
+                                <a class="btn btn-sm btn-primary" href="@Html.Action("Leave", "Club", new { @id = Model.ClubId })"><i class="glyphicon glyphicon-off button-icon">Leave</i></a>
                             }
                             else if (ViewBag.CanJoin)
                             {

@@ -38,7 +38,35 @@ namespace ClubChallengeBeta.Controllers
             return View(aspnetuser);
         }
 
-        
+
+        public ActionResult Challenge(string id)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            if (id == currentUserId) { }
+            else
+            {
+                try
+                {
+                    var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == currentUserId);
+                    var challengedUser = db.AspNetUsers.SingleOrDefault(e => e.Id == id);
+                    var sChallenge = new SingleChallenge();
+                    sChallenge.User1Id = currentUserId;
+                    sChallenge.User2Id = id;
+                    sChallenge.User1Accepted = true;
+                    sChallenge.User2Accepted = false;
+                    sChallenge.DateCreated = DateTime.Now;
+                    db.SingleChallenges.Add(sChallenge);
+                    db.SaveChanges();
+                }
+                catch
+                {
+
+                }
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
+
+
 
         protected override void Dispose(bool disposing)
         {
