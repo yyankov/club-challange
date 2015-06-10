@@ -56,6 +56,7 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="ClubId" Type="int" />
+          <Property Name="Score" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Clubs">
           <Key>
@@ -333,6 +334,7 @@
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="ClubId" Type="Int32" />
+          <Property Name="Score" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="ClubChallengeModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="ClubChallengeModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="Club" Relationship="ClubChallengeModel.FK_AspNetUsers_Clubs" FromRole="AspNetUser" ToRole="Club" />
@@ -500,6 +502,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="ClubChallengeModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Score" ColumnName="Score" />
                 <ScalarProperty Name="ClubId" ColumnName="ClubId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
