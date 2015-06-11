@@ -51,6 +51,7 @@ namespace ClubChallengeBeta.Controllers
             db.SaveChanges();
             return RedirectToAction("MyChallenges");
         }
+
         public ActionResult Accept(int id)
         {
             SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
@@ -58,6 +59,24 @@ namespace ClubChallengeBeta.Controllers
             singleChallenge.Result = "Accepted";
             db.Entry(singleChallenge).State = EntityState.Modified;
             db.SaveChanges();
+            return RedirectToAction("MyChallenges");
+        }
+
+
+        public ActionResult ClaimVictory(int id)
+        {
+            string currentUserId = User.Identity.GetUserId();
+            SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
+            if (singleChallenge.AspNetUser.Id != currentUserId && singleChallenge.AspNetUser1.Id != currentUserId)
+            {
+            }
+            else
+            {
+                singleChallenge.WinnerId = currentUserId;
+                singleChallenge.Result = "Waiting approval";
+                db.Entry(singleChallenge).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return RedirectToAction("MyChallenges");
         }
         // GET: /SingleChallenges/Details/5

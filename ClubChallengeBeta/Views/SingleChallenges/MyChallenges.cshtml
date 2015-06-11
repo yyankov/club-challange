@@ -58,13 +58,22 @@
                     <a class="fa fa-lg fa-thumbs-up" href="@Url.Action("Accept", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Accept challenge"></a>
                     <a class="fa fa-lg fa-thumbs-down" href="@Url.Action("Reject", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Reject challenge"></a>
                 }
-                else if (!item.User2Accepted && User.Identity.GetUserId() == item.AspNetUser.Id&& String.IsNullOrEmpty(item.Result))
+                else if (!item.User2Accepted && User.Identity.GetUserId() == item.AspNetUser.Id && String.IsNullOrEmpty(item.Result))
                 {
                     <i class="fa fa-lg fa-ban" title="Waiting for another user">Pending</i>
                 }
-                else if (item.User2Accepted && item.AspNetUser2==null)
+                else if (item.User2Accepted && item.AspNetUser2 == null)
                 {
-                    <i class="fa fa-lg fa-diamond"></i>
+                    <a class="fa fa-lg fa-diamond" href="@Url.Action("ClaimVictory", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Claim Victory"></a>
+                }
+                else if (item.User2Accepted && item.AspNetUser2.Id == User.Identity.GetUserId())
+                {                    
+                    <i class="fa fa-lg fa-smile-o"></i>
+                }
+                else if (item.User2Accepted && item.AspNetUser2.Id != User.Identity.GetUserId())
+                {
+                    
+                    <i class="fa fa-lg fa-frown-o"></i>
                 }
             </td>
         </tr>
