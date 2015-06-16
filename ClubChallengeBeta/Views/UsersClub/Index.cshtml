@@ -25,7 +25,6 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-
                 <a class="glyphicon glyphicon-search" href="@Url.Action("Details", "UsersClub", new { @id = item.UserId })"></a>
                 @if (User.Identity.GetUserId() != item.UserId)
                 {

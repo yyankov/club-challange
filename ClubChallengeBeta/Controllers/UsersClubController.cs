@@ -75,6 +75,52 @@ namespace ClubChallengeBeta.Controllers
             return RedirectToAction("MyChallenges", "SingleChallenges");
         }
 
+        // GET: /UsersClub/
+        [HttpGet]
+        public ActionResult MultiChallenge(string id)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var users = db.AspNetUsers.Where(e => e.Id != currentUserId).Select(e => new SelectListItem
+            {
+                Text = e.UserName,
+                Value = e.Id
+            });
+            ViewBag.users = users;
+            var challenge = new MultiChallengeViewModel();
+            challenge.PartnerId = id;
+            return PartialView("_MultiChallenge", challenge);
+        }
+
+
+        [HttpPost]
+        public ActionResult MultiChallenge(MultiChallengeViewModel mc)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            if (mc.PartnerId == currentUserId || mc.Opponent1Id == currentUserId || mc.Opponent2Id == currentUserId) { }
+            else
+            {
+                try
+                {
+                    var a = 2;
+                    //var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == currentUserId);
+                    //var challengedUser = db.AspNetUsers.SingleOrDefault(e => e.Id == id);
+                    //var sChallenge = new SingleChallenge();
+                    //sChallenge.User1Id = currentUserId;
+                    //sChallenge.User2Id = id;
+                    //sChallenge.User1Accepted = true;
+                    //sChallenge.User2Accepted = false;
+                    //sChallenge.DateCreated = DateTime.Now;
+                    //db.SingleChallenges.Add(sChallenge);
+                    //db.SaveChanges();
+                }
+                catch
+                {
+
+                }
+            }
+            return RedirectToAction("MyChallenges", "SingleChallenges");
+        }
+
 
 
         protected override void Dispose(bool disposing)

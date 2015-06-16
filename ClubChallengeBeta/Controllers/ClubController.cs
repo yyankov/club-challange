@@ -99,7 +99,7 @@ namespace ClubChallengeBeta.Controllers
                 else
                 {
                     club.ImageData = System.IO.File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + "Content/cicon.png");
-                    club.ImageMimeType = "png";
+                    club.ImageMimeType = "image/png";
                 }
                 var userId = User.Identity.GetUserId();
                 club.OwnerId = userId;
