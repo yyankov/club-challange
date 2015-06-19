@@ -1,82 +1,83 @@
 ﻿@model IEnumerable<ClubChallengeBeta.App_Data.SingleChallenge>
 @using Microsoft.AspNet.Identity
-
-<table class="table">
-    <tr>
-        <th>
-            Challenger
-        </th>
-        <th>
-
-        </th>
-        <th>
-            Opponent
-        </th>
-        <th>
-        </th>
-        <th>
-            Result
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<div class="well">
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
-            </td>
-            <td>
-                @if (item.User1Accepted)
-                {
-                    <i class="fa fa-lg fa-circle"></i>
-                }
-                else
-                {
-                    <i class="fa fa-lg fa-circle-o"></i>
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AspNetUser1.UserName)
-            </td>
-            <td>
-                @if (item.User2Accepted)
-                {
-                    <i class="fa fa-lg fa-circle"></i>
-                }
-                else
-                {
-                    <i class="fa fa-lg fa-circle-o"></i>
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Result)
-            </td>
-            <td>
-                @if (!item.User2Accepted && User.Identity.GetUserId() != item.AspNetUser.Id && String.IsNullOrEmpty(item.Result))
-                {
-                    <a class="fa fa-lg fa-thumbs-up" href="@Url.Action("Accept", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Accept challenge"></a>
-                    <a class="fa fa-lg fa-thumbs-down" href="@Url.Action("Reject", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Reject challenge"></a>
-                }
-                else if (!item.User2Accepted && User.Identity.GetUserId() == item.AspNetUser.Id && String.IsNullOrEmpty(item.Result))
-                {
-                    <i class="fa fa-lg fa-ban" title="Waiting for another user">Pending</i>
-                }
-                else if (item.User2Accepted && item.AspNetUser2 == null)
-                {
-                    <a class="fa fa-lg fa-diamond" href="@Url.Action("ClaimVictory", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Claim Victory"></a>
-                }
-                else if (item.User2Accepted && item.AspNetUser2.Id == User.Identity.GetUserId())
-                {                    
-                    <i class="fa fa-lg fa-smile-o"></i>
-                }
-                else if (item.User2Accepted && item.AspNetUser2.Id != User.Identity.GetUserId())
-                {
-                    
-                    <i class="fa fa-lg fa-frown-o"></i>
-                }
-            </td>
-        </tr>
-    }
+            <th>
+                Challenger
+            </th>
+            <th>
 
-</table>
+            </th>
+            <th>
+                Opponent
+            </th>
+            <th>
+            </th>
+            <th>
+                Result
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+                </td>
+                <td>
+                    @if (item.User1Accepted)
+                    {
+                        <i class="icon ion-ios-tennisball"></i>
+                    }
+                    else
+                    {
+                        <i class="icon ion-ios-tennisball-outline" ></i>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser1.UserName)
+                </td>
+                <td>
+                    @if (item.User2Accepted)
+                    {
+                        <i class="icon ion-ios-tennisball"></i>
+                    }
+                    else
+                    {
+                        <i class="icon ion-ios-tennisball-outline" ></i>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Result)
+                </td>
+                <td>
+                    @if (!item.User2Accepted && User.Identity.GetUserId() != item.AspNetUser.Id && String.IsNullOrEmpty(item.Result))
+                    {
+                        <a class="fa fa-lg fa-thumbs-up" href="@Url.Action("Accept", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Accept challenge"></a>
+                        <a class="fa fa-lg fa-thumbs-down" href="@Url.Action("Reject", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Reject challenge"></a>
+                    }
+                    else if (!item.User2Accepted && User.Identity.GetUserId() == item.AspNetUser.Id && String.IsNullOrEmpty(item.Result))
+                    {
+                        <i class="fa fa-lg fa-ban" title="Waiting for another user">Pending</i>
+                    }
+                    else if (item.User2Accepted && item.AspNetUser2 == null)
+                    {
+                        <a class="fa fa-lg fa-diamond" href="@Url.Action("ClaimVictory", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Claim Victory"></a>
+                    }
+                    else if (item.User2Accepted && item.AspNetUser2.Id == User.Identity.GetUserId())
+                    {
+                        <i class="fa fa-lg fa-smile-o"></i>
+                    }
+                    else if (item.User2Accepted && item.AspNetUser2.Id != User.Identity.GetUserId())
+                    {
+
+                        <i class="fa fa-lg fa-frown-o"></i>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

@@ -1,58 +1,60 @@
 ﻿@model ClubChallengeBeta.Models.ClubSearchViewModel
 
-<p>
-    @if (ViewBag.ClubUser && !Model.HasClub)
-    {
-        @Html.ActionLink("Create your own club", "Create")
-    }
-</p>
-<table class="table">
-    <tr>
-        <th>
-
-        </th>
-        <th>
-            Club Name
-        </th>
-        <th>
-            Owner
-        </th>
-        <th>
-            Text
-        </th>
-        <th>
-            Users
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model.Clubs)
-    {
+<div class="well">
+    <p>
+        @if (ViewBag.ClubUser && !Model.HasClub)
+        {
+            @Html.ActionLink("Create your own club", "Create")
+        }
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                <img class="user-tumb" src="@Url.Action("GetIcon", "Club", new { @id = item.ClubId })" />
-            </td>
-            <td>
-                @if (item.OwnClub)
-                {
-                    <i class="glyphicon glyphicon-star"></i>
-                }
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OwnerName)
-            </td>
-            <td>
-                <!--TODO:SEXIER text style hue hue-->
-                @Html.DisplayFor(modelItem => item.Text)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UsersCount)
-            </td>
-            <td>
-                <a class="glyphicon glyphicon-search" href="@Url.Action("Details", "Club", new { @id = item.ClubId })"></a>
-            </td>
-        </tr>
-    }
+            <th>
 
-</table>
+            </th>
+            <th>
+                Club Name
+            </th>
+            <th>
+                Owner
+            </th>
+            <th>
+                Text
+            </th>
+            <th>
+                Users
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.Clubs)
+        {
+            <tr>
+                <td>
+                    <img class="user-tumb" src="@Url.Action("GetIcon", "Club", new { @id = item.ClubId })" />
+                </td>
+                <td>
+                    @if (item.OwnClub)
+                    {
+                        <i class="glyphicon glyphicon-star"></i>
+                    }
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OwnerName)
+                </td>
+                <td>
+                    <!--TODO:SEXIER text style hue hue-->
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsersCount)
+                </td>
+                <td>
+                    <a class="glyphicon glyphicon-search" href="@Url.Action("Details", "Club", new { @id = item.ClubId })"></a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
