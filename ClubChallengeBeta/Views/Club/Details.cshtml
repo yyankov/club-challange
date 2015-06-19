@@ -1,63 +1,80 @@
 ﻿@model ClubChallengeBeta.Models.ClubViewModel
 @using Microsoft.AspNet.Identity
-@{
-    ViewBag.Title = "Details";
-}
-
-
-
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-10">
-            <div class="row">
-                <div class="col-sm-6 col-md-4">
-                    <img src="@Url.Action("GetIcon", "Club", new { @id = Model.ClubId })" alt="" class="img-rounded img-responsive" />
-                </div>
-                <div class="col-sm-6 col-md-8">
-                    <h4>
-                        @Html.DisplayFor(model => model.Name)
-                    </h4>
-                    <small>
-                        <cite title="San Francisco, USA">
-                            &quot;@Model.Text&quot;
-                        </cite>
-                    </small>
-                    <p>
-                        <i class="fa fa-lg fa-user-secret details-icon"></i>@Model.OwnerName
-                        <br />
-                        <i class="fa fa-lg fa-users details-icon"></i>@Model.UsersCount
-                    </p>
-                    <p style="margin-top: 50px; margin-left: 10px;">
-                        <strong>Leaderboard</strong>
-                    </p>
-                    <table class="table">
-                        <tr>
-                            <td>User</td>
-                            <td>Score</td>
-                        </tr>
-                        @foreach (var user in Model.Users)
-                        {
-                            <tr>
-                                <td>@user.UserName</td>
-                                <td>@user.Score</td>
-                            </tr>
-                        }
-                    </table>
-                    <!-- Split button -->
-                    <div class="btn-group">
-                        @if (@User.Identity.GetUserId() == Model.OwnerId)
-                        {
-                            <a class="btn btn-sm btn-primary" href="@Url.Action("Edit", "Club", new { @id = Model.ClubId })"><i class="fa fa-lg fa-pencil button-icon"></i>Edit info</a>
-                            <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "Club", new { @id = Model.ClubId })"><i class="glyphicon glyphicon-off button-icon"></i>Delete</a>
-                        }
-                        else if (Model.OwnClub)
-                        {
-                            <a class="btn btn-sm btn-primary" href="@Url.Action("Leave", "Club", new { @id = Model.ClubId })"><i class="glyphicon glyphicon-off button-icon"></i>Leave</a>
-                        }
-                        else if (ViewBag.CanJoin)
-                        {
-                            <a class="btn btn-sm btn-primary" href="@Url.Action("Join", "Club", new { @id = Model.ClubId })"><i class="glyphicon glyphicon-off button-icon"></i>Join</a>
-                        }
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="@Url.Action("GetIcon", "Club", new { @id = Model.ClubId })" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                            @Html.DisplayFor(model => model.Name)
+                        </h4>
+                        <small>
+                            <cite title="San Francisco, USA">
+                                &quot;@Model.Text&quot;
+                            </cite>
+                        </small>
+                        <p>
+                            <i class="fa fa-lg fa-user-secret details-icon"></i>@Model.OwnerName
+                            <br />
+                            <i class="fa fa-lg fa-users details-icon"></i>@Model.UsersCount
+                        </p>
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#single">Singles Board</a></li>
+                            <li><a data-toggle="tab" href="#multi">Couples Board</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="single" class="tab-pane fade in active">
+                                <table class="table">
+                                    <tr>
+                                        <td>User</td>
+                                        <td>Score</td>
+                                    </tr>
+                                    @foreach (var user in Model.Users)
+                                    {
+                                        <tr>
+                                            <td>@user.UserName</td>
+                                            <td>@user.Score</td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                            <div id="multi" class="tab-pane fade">
+                                <table class="table">
+                                    <tr>
+                                        <td>User</td>
+                                        <td>Score</td>
+                                        <td>Score</td>
+                                    </tr>
+                                    @foreach (var user in Model.Users)
+                                    {
+                                        <tr>
+                                            <td>@user.UserName</td>
+                                            <td>@user.Score</td>
+                                            <td>Score</td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            @if (@User.Identity.GetUserId() == Model.OwnerId)
+                            {
+                                <a class="btn btn-sm btn-primary" href="@Url.Action("Edit", "Club", new { @id = Model.ClubId })"><i class="fa fa-lg fa-pencil button-icon"></i>Edit info</a>
+                                <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "Club", new { @id = Model.ClubId })"><i class="glyphicon glyphicon-off button-icon"></i>Delete</a>
+                            }
+                            else if (Model.OwnClub)
+                            {
+                                <a class="btn btn-sm btn-primary" href="@Url.Action("Leave", "Club", new { @id = Model.ClubId })"><i class="glyphicon glyphicon-off button-icon"></i>Leave</a>
+                            }
+                            else if (ViewBag.CanJoin)
+                            {
+                                <a class="btn btn-sm btn-primary" href="@Url.Action("Join", "Club", new { @id = Model.ClubId })"><i class="glyphicon glyphicon-off button-icon"></i>Join</a>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
