@@ -231,10 +231,13 @@
     <Content Include="Content\cc.png" />
     <Content Include="Content\cicon.png" />
     <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\ionicons.css" />
+    <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\social-networks.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\ionicons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -268,6 +271,9 @@
       <DependentUpon>ClubChallengeEntities.edmx</DependentUpon>
       <LastGenOutput>ClubChallengeEntities.cs</LastGenOutput>
     </Content>
+    <Content Include="fonts\ionicons.eot" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.woff" />
     <None Include="Properties\PublishProfiles\CC-Mitko.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
