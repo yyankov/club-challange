@@ -1,40 +1,38 @@
 ﻿@model IEnumerable<ClubChallengeBeta.Models.SimpleUserViewModel>
 @using Microsoft.AspNet.Identity
-<div class="well">
-    <table class="table">
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th></th>
+            <td>
+                @if (item.IsOwner)
+                {
+                    <i class="glyphicon glyphicon-star"></i>
+                }
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+
+                <a class="glyphicon glyphicon-search" href="@Url.Action("Details", "UsersClub", new { @id = item.UserId })"></a>
+                @if (User.Identity.GetUserId() != item.UserId)
+                {
+                    <a class="icon ion-person" href="@Url.Action("Challenge", "UsersClub", new { @id = item.UserId })"> </a>
+                    <a class="icon ion-person-add" href="@Url.Action("Challenge", "UsersClub", new { @id = item.UserId })"></a>
+                }
+            </td>
         </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @if (item.IsOwner)
-                    {
-                        <i class="glyphicon glyphicon-star"></i>
-                    }
-                    @Html.DisplayFor(modelItem => item.UserName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-
-                    <a class="glyphicon glyphicon-search" href="@Url.Action("Details", "UsersClub", new { @id = item.UserId })"></a>
-                    @if (User.Identity.GetUserId() != item.UserId)
-                    {
-                        <a class="icon ion-person" href="@Url.Action("Challenge", "UsersClub", new { @id = item.UserId })"> </a>
-                        <a class="icon ion-person-add" href="@Url.Action("Challenge", "UsersClub", new { @id = item.UserId })"></a>
-                    }
-                </td>
-            </tr>
-        }
-    </table>
-</div>
+    }
+</table>

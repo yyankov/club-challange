@@ -96,3 +96,8 @@ a.cc-logo:hover{
 .gi-5x {
     font-size: 5em;
 }
+
+.navbar-inverse {
+    background-color: #094502;
+    border-color: #094502;
+}
