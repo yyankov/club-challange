@@ -32,12 +32,33 @@
                                     <tr>
                                         <td>User</td>
                                         <td>Score</td>
+                                        @if (@User.Identity.GetUserId() == Model.OwnerId)
+                                        {
+                                            <td></td>
+                                        }
                                     </tr>
                                     @foreach (var user in Model.Users)
                                     {
                                         <tr>
                                             <td>@user.UserName</td>
                                             <td>@user.Score</td>
+                                            @if (@User.Identity.GetUserId() == Model.OwnerId)
+                                            {
+                                                <td>
+                                                    <a class="fa fa-lg fa-ban" href="@Url.Action("ResetSinglesPoints", "Club", new { @id = Model.ClubId })"></a>
+                                                </td>
+                                            }
+                                        </tr>
+                                    }
+                                    @if (@User.Identity.GetUserId() == Model.OwnerId)
+                                    {
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <a class="fa fa-lg fa-eraser" href="@Url.Action("ResetSinglesBoard", "Club", new { @id = Model.ClubId })"></a>
+                                                <a class="fa fa-lg fa-trophy" href="@Url.Action("GiveSinglesReward", "Club", new { @id = Model.ClubId })"></a>
+                                            </td>
                                         </tr>
                                     }
                                 </table>
@@ -46,15 +67,33 @@
                                 <table class="table">
                                     <tr>
                                         <td>User</td>
-                                        <td>Score</td>
-                                        <td>Score</td>
+                                        <td>Score</td>@if (@User.Identity.GetUserId() == Model.OwnerId)
+                                        {
+                                            <td></td>
+                                        }
                                     </tr>
                                     @foreach (var user in Model.Users)
                                     {
                                         <tr>
                                             <td>@user.UserName</td>
-                                            <td>@user.Score</td>
-                                            <td>Score</td>
+                                            <td>@user.TeamScore</td>
+                                            @if (@User.Identity.GetUserId() == Model.OwnerId)
+                                            {
+                                                <td>
+                                                    <a class="fa fa-lg fa-ban" href="@Url.Action("ResetTeamPoints", "Club", new { @id = Model.ClubId })"></a>
+                                                </td>
+                                            }
+                                        </tr>
+                                    }
+                                    @if (@User.Identity.GetUserId() == Model.OwnerId)
+                                    {
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td>
+                                                <a class="fa fa-lg fa-eraser" href="@Url.Action("ResetTeamBoard", "Club", new { @id = Model.ClubId })"></a>
+                                                <a class="fa fa-lg fa-trophy" href="@Url.Action("GiveTeamReward", "Club", new { @id = Model.ClubId })"></a>
+                                            </td>
                                         </tr>
                                     }
                                 </table>

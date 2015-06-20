@@ -29,6 +29,7 @@ namespace ClubChallengeBeta.Controllers
                 Email = e.Email,
                 IsOwner = e.Club.OwnerId == e.Id
             });
+            ViewBag.isOwner = currentUser.Id == currentUser.Club.OwnerId;
             return View(users);
         }
 
@@ -124,6 +125,27 @@ namespace ClubChallengeBeta.Controllers
         }
 
 
+
+        public ActionResult Kick(string id)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            if (id == currentUserId) { }
+            else
+            {
+                try
+                {
+                    var kickedUser = db.AspNetUsers.SingleOrDefault(e => e.Id == id);
+                    kickedUser.ClubId = null;
+                    db.Entry(kickedUser).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                catch
+                {
+
+                }
+            }
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {

@@ -12,11 +12,13 @@ namespace ClubChallengeBeta.Models
         public string UserId { get; set; }
         public string UserName { get; set; }
         public int Score { get; set; }
+        public int TeamScore { get; set; }
         public UserViewModel(AspNetUser user)
         {
             UserId = user.Id;
             UserName = user.UserName;
             Score = user.Score;
+            TeamScore = user.TeamScore;
         }
     }
     public class ClubViewModel

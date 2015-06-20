@@ -27,14 +27,6 @@ namespace ClubChallengeBeta.Controllers
         }
 
 
-        // GET: /SingleChallenges/
-        public ActionResult MyChallenges()
-        {
-            string id = User.Identity.GetUserId();
-            var singlechallenges = db.SingleChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2);
-            singlechallenges = singlechallenges.Where(e => e.AspNetUser.Id == id || e.AspNetUser1.Id == id);
-            return View(singlechallenges.ToList());
-        }
         public ActionResult Reject(int id)
         {
             SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
