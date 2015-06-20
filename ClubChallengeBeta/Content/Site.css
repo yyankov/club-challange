@@ -107,3 +107,9 @@ a.cc-logo {
 a:hover, a:focus {
     text-decoration: none;
 }
+
+a.multi-challenge
+{
+     display: block;
+     text-indent: -9999px; /* hides the link text */
+}

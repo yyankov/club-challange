@@ -75,6 +75,54 @@ namespace ClubChallengeBeta.Controllers
             return RedirectToAction("MyChallenges", "SingleChallenges");
         }
 
+        // GET: /UsersClub/
+        [HttpGet]
+        public ActionResult MultiChallenge(string id)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var users = db.AspNetUsers.Where(e => e.Id != currentUserId).Select(e => new SelectListItem
+            {
+                Text = e.UserName,
+                Value = e.Id
+            });
+            ViewBag.users = users;
+            var challenge = new MultiChallengeViewModel();
+            challenge.PartnerId = id;
+            return PartialView("_MultiChallenge", challenge);
+        }
+
+
+        [HttpPost]
+        public ActionResult MultiChallenge(MultiChallengeViewModel mc)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            if (mc.PartnerId == currentUserId || mc.Opponent1Id == currentUserId || mc.Opponent2Id == currentUserId) { }
+            else
+            {
+                try
+                {
+                    var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == currentUserId);
+                    var tChallenge = new TeamChallenge();
+                    tChallenge.User1Id = currentUserId;
+                    tChallenge.User2Id = mc.PartnerId;
+                    tChallenge.User3Id = mc.Opponent1Id;
+                    tChallenge.User4Id = mc.Opponent2Id;
+                    tChallenge.User1Accepted = true;
+                    tChallenge.User2Accepted = false;
+                    tChallenge.User3Accepted = false;
+                    tChallenge.User4Accepted = false;
+                    tChallenge.DateCreated = DateTime.Now;
+                    db.TeamChallenges.Add(tChallenge);
+                    db.SaveChanges();
+                }
+                catch
+                {
+
+                }
+            }
+            return RedirectToAction("MyChallenges", "SingleChallenges");
+        }
+
 
 
         protected override void Dispose(bool disposing)

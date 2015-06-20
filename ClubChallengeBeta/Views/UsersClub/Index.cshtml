@@ -25,13 +25,14 @@
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-
                 <a class="glyphicon glyphicon-search" href="@Url.Action("Details", "UsersClub", new { @id = item.UserId })"></a>
                 @if (User.Identity.GetUserId() != item.UserId)
                 {
                     <a class="icon ion-person" href="@Url.Action("Challenge", "UsersClub", new { @id = item.UserId })"> </a>
-                    <a class="icon ion-person-stalker" href="@Url.Action("Challenge", "UsersClub", new { @id = item.UserId })"></a>
+
+                    <a class="modal-link icon ion-person-add" href="@Url.Action("MultiChallenge", "UsersClub", new { @id = item.UserId })"></a>
                 }
+
             </td>
         </tr>
     }

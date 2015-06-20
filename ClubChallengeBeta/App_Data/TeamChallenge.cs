@@ -26,6 +26,7 @@ namespace ClubChallengeBeta.App_Data
         public string Winner1Id { get; set; }
         public string Result { get; set; }
         public bool Confirmed { get; set; }
+        public System.DateTime DateCreated { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual AspNetUser AspNetUser1 { get; set; }
