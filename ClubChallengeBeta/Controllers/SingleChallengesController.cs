@@ -26,14 +26,7 @@ namespace ClubChallengeBeta.Controllers
             return View(singleChallenges.ToList());
         }
 
-        // GET: /SingleChallenges/
-        public ActionResult MyChallenges()
-        {
-            string id = User.Identity.GetUserId();
-            var singlechallenges = db.SingleChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2);
-            singlechallenges = singlechallenges.Where(e => e.AspNetUser.Id == id || e.AspNetUser1.Id == id);
-            return View(singlechallenges.ToList());
-        }
+
         public ActionResult Reject(int id)
         {
             SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
@@ -50,6 +43,40 @@ namespace ClubChallengeBeta.Controllers
             db.Entry(singleChallenge).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("MyChallenges");
+        }
+
+        public ActionResult Approve(int id)
+        {
+            SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
+            singleChallenge.Result = "Confirmed";
+            singleChallenge.Confirmed=true;
+            var winner = db.AspNetUsers.SingleOrDefault(e => e.Id == singleChallenge.WinnerId);
+            winner.Score++;
+            db.Entry(singleChallenge).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("WaitingApproval","Challenges");
+        }
+
+        public ActionResult Disapprove(int id)
+        {
+            SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
+            singleChallenge.Result = "Confirmed";
+            singleChallenge.Confirmed = true;
+            if (singleChallenge.WinnerId == singleChallenge.User1Id)
+            {
+                singleChallenge.WinnerId = singleChallenge.User2Id;
+                var winner = db.AspNetUsers.SingleOrDefault(e => e.Id == singleChallenge.WinnerId);
+                winner.Score++;
+            }
+            else
+            {
+                singleChallenge.WinnerId = singleChallenge.User1Id;
+                var winner = db.AspNetUsers.SingleOrDefault(e => e.Id == singleChallenge.WinnerId);
+                winner.Score++;
+            }
+            db.Entry(singleChallenge).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("WaitingApproval", "Challenges");
         }
 
         public ActionResult Accept(int id)

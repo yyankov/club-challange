@@ -27,6 +27,7 @@ namespace ClubChallengeBeta
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-social.css",
                       "~/Content/font-awesome.css",
+                      "~/Content/ionicons.css",
                       "~/Content/site.css"));
         }
     }

@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,20 +19,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand cc-logo" href="/"></a>
+                <a class="navbar-brand cc-logo" href="/">Club Challenge</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Clubs", "Index", "Club")</li>
-                    <li>@Html.ActionLink("Challenges", "Index", "SingleChallenges")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Clubs", "Index", "Club")</li>
+                        <li>@Html.ActionLink("Challenges", "Index", "SingleChallenges")</li>
+                    }
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_DropdownPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
+        <div id="modal-container" class="modal fade"
+             tabindex="-1" role="dialog">
+            <div class="modal-content">
+            </div>
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Club Challenge Ltd.</p>
@@ -40,5 +50,30 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    <style>
+        .modal-content {
+            width: 600px !important;
+            margin: 30px auto !important;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-container').modal('hide');
+            });
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+        });
+    </script>
 </body>
 </html>

@@ -174,6 +174,9 @@
     <Compile Include="App_Data\SingleChallenge.cs">
       <DependentUpon>ClubChallengeEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="App_Data\TeamChallenge.cs">
+      <DependentUpon>ClubChallengeEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -209,18 +212,27 @@
       <DependentUpon>ClubChallengeEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChallengesController.cs" />
     <Compile Include="Controllers\ClubController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TeamChallengesController.cs" />
     <Compile Include="Controllers\SingleChallengesController.cs" />
     <Compile Include="Controllers\UsersClubController.cs" />
+    <Compile Include="Extensions\ValidationAttributes\NotEqual.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClubViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MyChallengesViewModel.cs" />
+    <Compile Include="Models\SingleChallengeViewModels.cs" />
+    <Compile Include="Models\TeamChallengesViewModels.cs" />
+    <Compile Include="Models\UserViewModels.cs" />
+    <Compile Include="Models\MultiChallengeViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\NavbarUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-social.css" />
@@ -228,13 +240,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\cc.png" />
+    <Content Include="Content\cc.gif" />
     <Content Include="Content\cicon.png" />
     <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\ionicons.css" />
+    <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\social-networks.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\ionicons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -268,6 +283,9 @@
       <DependentUpon>ClubChallengeEntities.edmx</DependentUpon>
       <LastGenOutput>ClubChallengeEntities.cs</LastGenOutput>
     </Content>
+    <Content Include="fonts\ionicons.eot" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.woff" />
     <None Include="Properties\PublishProfiles\CC-Mitko.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -284,6 +302,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\validation.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -308,7 +327,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Club\Create.cshtml" />
     <Content Include="Views\Club\Delete.cshtml" />
     <Content Include="Views\Club\Details.cshtml" />
@@ -318,7 +336,12 @@
     <Content Include="Views\UsersClub\Index.cshtml" />
     <Content Include="Views\SingleChallenges\Details.cshtml" />
     <Content Include="Views\SingleChallenges\Index.cshtml" />
-    <Content Include="Views\SingleChallenges\MyChallenges.cshtml" />
+    <Content Include="Views\Shared\_DropdownPartial.cshtml" />
+    <Content Include="Views\UsersClub\_MultiChallenge.cshtml" />
+    <Content Include="Views\TeamChallenges\Details.cshtml" />
+    <Content Include="Views\TeamChallenges\Index.cshtml" />
+    <Content Include="Views\Challenges\Index.cshtml" />
+    <Content Include="Views\Challenges\WaitingApproval.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

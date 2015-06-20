@@ -1,10 +1,15 @@
 ﻿@using Microsoft.AspNet.Identity
+@using ClubChallengeBeta.Utils
 
 <ul class="nav navbar-nav navbar-right">
     @if (Request.IsAuthenticated)
     {
-
-
+        if (NavbarUtils.IsClubUser(User.Identity.GetUserId()))
+        {
+            <li>
+                <a class="ion-email-unread" title="Waiting Approval"style="font-size: 20px;" href="@Url.Action("WaitingApproval", "Challenges")">@NavbarUtils.PendingChallenges(User.Identity.GetUserId())</a>
+            </li>
+        }
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">@User.Identity.GetUserName()<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -14,7 +19,7 @@
                     @Html.ActionLink("My Club", "Index", "UsersClub", routeValues: null, htmlAttributes: new { title = "My Club" })
                 </li>
                 <li>
-                    @Html.ActionLink("My Challenges", "MyChallenges", "SingleChallenges", routeValues: null, htmlAttributes: new { title = "My Challenges" })
+                    @Html.ActionLink("My Challenges", "Index", "Challenges", routeValues: null, htmlAttributes: new { title = "My Challenges" })
                 </li>
                 <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-ban"> Log off</i></a></li>
 
