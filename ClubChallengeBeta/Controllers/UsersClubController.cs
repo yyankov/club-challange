@@ -44,7 +44,7 @@ namespace ClubChallengeBeta.Controllers
             {
                 return HttpNotFound();
             }
-            return View(aspNetUser);
+            return View(new UserDetailsViewModel(aspNetUser, db.AspNetUsers.Find(User.Identity.GetUserId())));
         }
 
 

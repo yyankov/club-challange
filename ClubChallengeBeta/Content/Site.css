@@ -51,9 +51,11 @@ a.cc-logo {
     padding-left: 60px;
     color: #0072B4 !important;
 }
-a.cc-logo:hover{
+
+    a.cc-logo:hover {
         opacity: 0.9 !important;
-}
+    }
+
 .navbar-nav > li > a {
     padding-top: 18px;
     padding-bottom: 15px;
@@ -100,4 +102,8 @@ a.cc-logo:hover{
 .navbar-inverse {
     background-color: #094502;
     border-color: #094502;
+}
+
+a:hover, a:focus {
+    text-decoration: none;
 }
