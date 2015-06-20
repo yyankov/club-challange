@@ -15,16 +15,16 @@ namespace ClubChallengeBeta.Models
 
     public class MultiChallengeViewModel : ValidationAttribute
     {
+        [Display(Name = "Partner")]
         public string PartnerId { get; set; }
 
         [NotEqual("PartnerId", ErrorMessage = "Opponent 1 should be different than Partner")]
+        [Display(Name="Opponent 1")]
         public string Opponent1Id { get; set; }
 
         [NotEqual("PartnerId", ErrorMessage = "Opponent 2 should be different than Partner")]
         [NotEqualTo("Opponent1Id", ErrorMessage = "Opponent 2 should be different than Opponent 1")]
+        [Display(Name = "Opponent 2")]
         public string Opponent2Id { get; set; }
-        
-        [Required]
-        public int KZL { get;set; }
     }
 }

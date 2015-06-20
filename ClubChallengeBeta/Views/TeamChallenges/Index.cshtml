@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ClubChallengeBeta.App_Data.SingleChallenge>
+@using Microsoft.AspNet.Identity
+
+<table class="table">
+    <tr>
+        <th>
+            Challenger
+        </th>
+        <th>
+
+        </th>
+        <th>
+            Opponent
+        </th>
+        <th>
+        </th>
+        <th>
+            Result
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+            </td>
+            <td>
+                @if (item.User1Accepted)
+                {
+                    <i class="fa fa-lg fa-circle"></i>
+                }
+                else
+                {
+                    <i class="fa fa-lg fa-circle-o"></i>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetUser1.UserName)
+            </td>
+            <td>
+                @if (item.User2Accepted)
+                {
+                    <i class="fa fa-lg fa-circle"></i>
+                }
+                else
+                {
+                    <i class="fa fa-lg fa-circle-o"></i>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Result)
+            </td>
+        </tr>
+    }
+
+</table>

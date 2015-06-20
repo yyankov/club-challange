@@ -212,8 +212,10 @@
       <DependentUpon>ClubChallengeEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChallengesController.cs" />
     <Compile Include="Controllers\ClubController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TeamChallengesController.cs" />
     <Compile Include="Controllers\SingleChallengesController.cs" />
     <Compile Include="Controllers\UsersClubController.cs" />
     <Compile Include="Extensions\ValidationAttributes\NotEqual.cs" />
@@ -223,6 +225,9 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClubViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MyChallengesViewModel.cs" />
+    <Compile Include="Models\SingleChallengeViewModels.cs" />
+    <Compile Include="Models\TeamChallengesViewModels.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="Models\MultiChallengeViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -333,6 +338,10 @@
     <Content Include="Views\SingleChallenges\MyChallenges.cshtml" />
     <Content Include="Views\Shared\_DropdownPartial.cshtml" />
     <Content Include="Views\UsersClub\_MultiChallenge.cshtml" />
+    <Content Include="Views\TeamChallenges\Details.cshtml" />
+    <Content Include="Views\TeamChallenges\Index.cshtml" />
+    <Content Include="Views\TeamChallenges\MyChallenges.cshtml" />
+    <Content Include="Views\Challenges\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

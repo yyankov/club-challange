@@ -101,17 +101,19 @@ namespace ClubChallengeBeta.Controllers
             {
                 try
                 {
-                    var a = 2;
-                    //var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == currentUserId);
-                    //var challengedUser = db.AspNetUsers.SingleOrDefault(e => e.Id == id);
-                    //var sChallenge = new SingleChallenge();
-                    //sChallenge.User1Id = currentUserId;
-                    //sChallenge.User2Id = id;
-                    //sChallenge.User1Accepted = true;
-                    //sChallenge.User2Accepted = false;
-                    //sChallenge.DateCreated = DateTime.Now;
-                    //db.SingleChallenges.Add(sChallenge);
-                    //db.SaveChanges();
+                    var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == currentUserId);
+                    var tChallenge = new TeamChallenge();
+                    tChallenge.User1Id = currentUserId;
+                    tChallenge.User2Id = mc.PartnerId;
+                    tChallenge.User3Id = mc.Opponent1Id;
+                    tChallenge.User4Id = mc.Opponent2Id;
+                    tChallenge.User1Accepted = true;
+                    tChallenge.User2Accepted = false;
+                    tChallenge.User3Accepted = false;
+                    tChallenge.User4Accepted = false;
+                    tChallenge.DateCreated = DateTime.Now;
+                    db.TeamChallenges.Add(tChallenge);
+                    db.SaveChanges();
                 }
                 catch
                 {
