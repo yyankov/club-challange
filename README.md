@@ -40,6 +40,9 @@ and ofc... dont try IE8 :D
 11.06.2015 - Version 0.3.1
 * Add claim victory functionality
 
+19.06.2015 - Version 0.4.0
+* Improve interface
+
 ## Credits
 
 Dimitar Kaludov
