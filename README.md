@@ -43,6 +43,11 @@ and ofc... dont try IE8 :D
 19.06.2015 - Version 0.4.0
 * Improve interface
 
+19.06.2015 - Version 0.4.0
+* Add team challenges
+* Add team userboards
+* Small interface imrpovements and bugfixes
+
 ## Credits
 
 Dimitar Kaludov
