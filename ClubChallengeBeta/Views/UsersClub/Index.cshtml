@@ -29,8 +29,12 @@
                 @if (User.Identity.GetUserId() != item.UserId)
                 {
                     <a class="icon ion-person" href="@Url.Action("Challenge", "UsersClub", new { @id = item.UserId })"> </a>
-
                     <a class="modal-link icon ion-person-add" href="@Url.Action("MultiChallenge", "UsersClub", new { @id = item.UserId })"></a>
+
+                    if (ViewBag.isOwner)
+                    {
+                         <a class="fa fa-ban fa-lg"  href="@Url.Action("Kick", "UsersClub", new { @id = item.UserId })"></a>
+                    }
                 }
 
             </td>

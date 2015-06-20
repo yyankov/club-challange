@@ -336,12 +336,10 @@
     <Content Include="Views\UsersClub\Index.cshtml" />
     <Content Include="Views\SingleChallenges\Details.cshtml" />
     <Content Include="Views\SingleChallenges\Index.cshtml" />
-    <Content Include="Views\SingleChallenges\MyChallenges.cshtml" />
     <Content Include="Views\Shared\_DropdownPartial.cshtml" />
     <Content Include="Views\UsersClub\_MultiChallenge.cshtml" />
     <Content Include="Views\TeamChallenges\Details.cshtml" />
     <Content Include="Views\TeamChallenges\Index.cshtml" />
-    <Content Include="Views\TeamChallenges\MyChallenges.cshtml" />
     <Content Include="Views\Challenges\Index.cshtml" />
     <Content Include="Views\Challenges\WaitingApproval.cshtml" />
   </ItemGroup>

@@ -27,16 +27,6 @@ namespace ClubChallengeBeta.Controllers
             return View(teamChallenges.ToList());
         }
 
-        // GET: /SingleChallenges/
-        public ActionResult MyChallenges()
-        {
-            string id = User.Identity.GetUserId();
-            var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == id);
-            var teamChallenges = db.TeamChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2).Include(s => s.AspNetUser3).Include(s => s.AspNetUser4);
-            teamChallenges = teamChallenges.Where(e => e.AspNetUser.Id == id || e.AspNetUser1.Id == id || e.AspNetUser2.Id == id || e.AspNetUser3.Id == id);
-
-            return View(teamChallenges.ToList().Select(e => new TeamChallengesViewModel(e, currentUser)));
-        }
 
         public ActionResult Reject(int id)
         {
