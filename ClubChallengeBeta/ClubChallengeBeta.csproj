@@ -232,6 +232,7 @@
     <Compile Include="Models\MultiChallengeViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\NavbarUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-social.css" />
@@ -342,6 +343,7 @@
     <Content Include="Views\TeamChallenges\Index.cshtml" />
     <Content Include="Views\TeamChallenges\MyChallenges.cshtml" />
     <Content Include="Views\Challenges\Index.cshtml" />
+    <Content Include="Views\Challenges\WaitingApproval.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

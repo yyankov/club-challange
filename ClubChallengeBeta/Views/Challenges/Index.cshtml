@@ -61,8 +61,8 @@
                     <td>
                         @if (item.CanAcceptReject)
                         {
-                            <a class="fa fa-lg fa-thumbs-up" href="@Url.Action("Accept", "SingleChallenges", new { id = item.TeamChallengeId })" title="Accept challenge"></a>
-                            <a class="fa fa-lg fa-thumbs-down" href="@Url.Action("Reject", "SingleChallenges", new { id = item.TeamChallengeId })" title="Reject challenge"></a>
+                            <a class="fa fa-lg fa-thumbs-up" href="@Url.Action("Accept", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Accept challenge"></a>
+                            <a class="fa fa-lg fa-thumbs-down" href="@Url.Action("Reject", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Reject challenge"></a>
                         }
                         else if (item.PendingAcceptance)
                         {
@@ -70,7 +70,7 @@
                         }
                         else if (item.CanDeclareWin)
                         {
-                            <a class="fa fa-lg fa-diamond" href="@Url.Action("ClaimVictory", "SingleChallenges", new { id = item.TeamChallengeId })" title="Claim Victory"></a>
+                            <a class="fa fa-lg fa-diamond" href="@Url.Action("ClaimVictory", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Claim Victory"></a>
                         }
                         else if (item.PendingAcceptance && item.IsWinner)
                         {
@@ -88,7 +88,7 @@
         </table>
 
     </div>
-    <div id="multi" class="tab-pane fade in">
+    <div id="multi" class="tab-pane fade">
         <table class="table">
             <tr>
                 <th>

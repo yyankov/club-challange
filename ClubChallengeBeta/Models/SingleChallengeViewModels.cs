@@ -8,12 +8,13 @@ namespace ClubChallengeBeta.Models
 {
     public class SingleChallengesViewModel
     {
-        public int TeamChallengeId { get; set; }
+        public int SinglesChallengeId { get; set; }
         public string User1Name { get; set; }
         public string User1Id { get; set; }
         public bool User1Accepted { get; set; }
         public string User2Name { get; set; }
         public string User2Id { get; set; }
+        public string WinnerId { get; set; }
         public bool User2Accepted { get; set; }
         public string Result { get; set; }
 
@@ -25,12 +26,13 @@ namespace ClubChallengeBeta.Models
 
         public SingleChallengesViewModel(SingleChallenge sc, AspNetUser currentUser)
         {
-            TeamChallengeId = sc.SinglesChallengeId;
+            SinglesChallengeId = sc.SinglesChallengeId;
             User1Name = sc.AspNetUser.UserName;
             User1Id = sc.User1Id;
             User1Accepted = sc.User1Accepted;
             User2Name = sc.AspNetUser1.UserName;
             User2Id = sc.User2Id;
+            WinnerId = sc.WinnerId;
             User2Accepted = sc.User2Accepted;
             Result = sc.Result;
             CanAcceptReject = false;

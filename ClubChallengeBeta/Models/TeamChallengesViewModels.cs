@@ -20,6 +20,7 @@ namespace ClubChallengeBeta.Models
         public bool User3Accepted { get; set; }
         public string User4Name { get; set; }
         public string User4Id { get; set; }
+        public string Winner1Id { get; set; }
         public bool User4Accepted { get; set; }
         public string Result { get; set; }
 
@@ -44,6 +45,7 @@ namespace ClubChallengeBeta.Models
             User4Name = tc.AspNetUser3.UserName;
             User4Id = tc.User4Id;
             User4Accepted = tc.User4Accepted;
+            Winner1Id = tc.Winner1Id;
             Result = tc.Result;
             CanAcceptReject = false;
             CanDeclareWin = false;
