@@ -17,15 +17,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand cc-logo" href="/"></a>
+                <a class="navbar-brand cc-logo" href="/">Club Challenge</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Clubs", "Index", "Club")</li>
-                    <li>@Html.ActionLink("Challenges", "Index", "SingleChallenges")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Clubs", "Index", "Club")</li>
+                        <li>@Html.ActionLink("Challenges", "Index", "SingleChallenges")</li>
+                    }
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+                @Html.Partial("_DropdownPartial")
             </div>
         </div>
     </div>

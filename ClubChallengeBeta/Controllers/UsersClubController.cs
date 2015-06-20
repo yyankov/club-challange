@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using ClubChallengeBeta.App_Data;
+using ClubChallengeBeta.Models;
 
 namespace ClubChallengeBeta.Controllers
 {
@@ -18,9 +19,17 @@ namespace ClubChallengeBeta.Controllers
         // GET: /UsersClub/
         public ActionResult Index()
         {
-            var currentUSer = db.AspNetUsers.Find(User.Identity.GetUserId());
-            var aspnetusers = db.AspNetUsers.Include(a => a.Club).Where(e => e.ClubId == currentUSer.ClubId);
-            return View(aspnetusers.ToList());
+            var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+            var aspNetUsers = db.AspNetUsers.Include(a => a.Club).Where(e => e.ClubId == currentUser.ClubId);
+            var users = aspNetUsers.Select(e => new SimpleUserViewModel()
+            {
+                UserId = e.Id,
+                UserName = e.UserName,
+                Phone = e.PhoneNumber,
+                Email = e.Email,
+                IsOwner = e.Club.OwnerId == e.Id
+            });
+            return View(users);
         }
 
         // GET: /UsersClub/Details/5
@@ -30,12 +39,12 @@ namespace ClubChallengeBeta.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AspNetUser aspnetuser = db.AspNetUsers.Find(id);
-            if (aspnetuser == null)
+            AspNetUser aspNetUser = db.AspNetUsers.Find(id);
+            if (aspNetUser == null)
             {
                 return HttpNotFound();
             }
-            return View(aspnetuser);
+            return View(new UserDetailsViewModel(aspNetUser, db.AspNetUsers.Find(User.Identity.GetUserId())));
         }
 
 
@@ -63,7 +72,7 @@ namespace ClubChallengeBeta.Controllers
 
                 }
             }
-            return RedirectToAction("MyChallenges","SingleChallenges");
+            return RedirectToAction("MyChallenges", "SingleChallenges");
         }
 
 
