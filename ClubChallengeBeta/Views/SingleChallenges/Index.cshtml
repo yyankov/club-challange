@@ -34,6 +34,10 @@
                 {
                     <i class="fa fa-lg fa-circle-o"></i>
                 }
+                @if (item.WinnerId == item.AspNetUser.Id)
+                {
+                    <i class="ion-ios-star"></i>
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AspNetUser1.UserName)
@@ -46,6 +50,10 @@
                 else
                 {
                     <i class="fa fa-lg fa-circle-o"></i>
+                }
+                @if (item.WinnerId == item.AspNetUser1.Id)
+                {
+                    <i class="ion-ios-star"></i>
                 }
             </td>
             <td>

@@ -173,6 +173,9 @@ namespace ClubChallengeBeta.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Club club = db.Clubs.Find(id);
+            var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+            currentUser.ClubId = null;
+            db.Entry(currentUser).State = EntityState.Modified;
             db.Clubs.Remove(club);
             db.SaveChanges();
             return RedirectToAction("Index");

@@ -136,8 +136,9 @@ namespace ClubChallengeBeta.Controllers
                 db.Entry(teamChallenge).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            return RedirectToAction("Index","Challenges");
+            return RedirectToAction("Index", "Challenges");
         }
+
         // GET: /SingleChallenges/Details/5
         public ActionResult Details(int? id)
         {
@@ -153,7 +154,48 @@ namespace ClubChallengeBeta.Controllers
             return View(singlechallenge);
         }
 
+        public ActionResult Approve(int id)
+        {
+            var teamChallenge = db.TeamChallenges.SingleOrDefault(e => e.TeamChallengeId == id);
+            teamChallenge.Result = "Confirmed";
+            teamChallenge.Confirmed = true;
 
+            if (teamChallenge.Winner1Id == teamChallenge.User1Id)
+            {
+                teamChallenge.AspNetUser.TeamScore++;
+                teamChallenge.AspNetUser1.TeamScore++;
+            }
+            else if (teamChallenge.Winner1Id == teamChallenge.User3Id)
+            {
+                teamChallenge.AspNetUser2.TeamScore++;
+                teamChallenge.AspNetUser3.TeamScore++;
+            }
+            db.Entry(teamChallenge).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("WaitingApproval", "Challenges");
+        }
+
+        public ActionResult Disapprove(int id)
+        {
+            var teamChallenge = db.TeamChallenges.SingleOrDefault(e => e.TeamChallengeId == id);
+            teamChallenge.Result = "Confirmed";
+            teamChallenge.Confirmed = true;
+            if (teamChallenge.Winner1Id == teamChallenge.User1Id)
+            {
+                teamChallenge.AspNetUser2.TeamScore++;
+                teamChallenge.AspNetUser3.TeamScore++;
+            }
+            else if (teamChallenge.Winner1Id == teamChallenge.User3Id)
+            {
+                teamChallenge.AspNetUser.TeamScore++;
+                teamChallenge.AspNetUser1.TeamScore++;
+            }
+            db.Entry(teamChallenge).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("WaitingApproval", "Challenges");
+        }
 
         protected override void Dispose(bool disposing)
         {

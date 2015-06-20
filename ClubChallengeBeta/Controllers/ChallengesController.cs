@@ -36,5 +36,24 @@ namespace ClubChallengeBeta.Controllers
             result.SingleChallenges = singleChallengesView;
             return View(result);
         }
+
+
+        // GET: /SingleChallenges/
+        public ActionResult WaitingApproval()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var currentUser = db.AspNetUsers.Find(currentUserId);
+            var currentUserClubId = currentUser.Club.ClubId;
+            var singleChallenges = db.SingleChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2);
+            singleChallenges = singleChallenges.Where(s => s.AspNetUser1.ClubId == currentUserClubId && s.Result == "Waiting approval");
+            var singleChallengesView = singleChallenges.ToList().Select(e => new SingleChallengesViewModel(e, currentUser));
+            var teamChallenges = db.TeamChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2);
+            teamChallenges = teamChallenges.Where(s => s.AspNetUser1.ClubId == currentUserClubId && s.Result == "Waiting approval");
+            var teamChallengesView = teamChallenges.ToList().Select(e => new TeamChallengesViewModel(e, currentUser));
+            var result = new MyChallengesViewModel();
+            result.TeamChallenges = teamChallengesView;
+            result.SingleChallenges = singleChallengesView;
+            return View(result);
+        }
 	}
 }
