@@ -31,5 +31,6 @@ namespace ClubChallengeBeta.App_Data
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Club> Clubs { get; set; }
         public virtual DbSet<SingleChallenge> SingleChallenges { get; set; }
+        public virtual DbSet<TeamChallenge> TeamChallenges { get; set; }
     }
 }

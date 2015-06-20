@@ -58,6 +58,10 @@
           <Property Name="ClubId" Type="int" />
           <Property Name="Score" Type="int" Nullable="false" />
           <Property Name="Refusals" Type="int" Nullable="false" />
+          <Property Name="Trophies" Type="int" Nullable="false" />
+          <Property Name="TeamScore" Type="int" Nullable="false" />
+          <Property Name="TeamRefusals" Type="int" Nullable="false" />
+          <Property Name="TeamTrophies" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Clubs">
           <Key>
@@ -83,6 +87,24 @@
           <Property Name="WinnerId" Type="nvarchar" MaxLength="128" />
           <Property Name="Result" Type="nvarchar" MaxLength="150" />
           <Property Name="Confirmed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamChallenges">
+          <Key>
+            <PropertyRef Name="TeamChallengeId" />
+          </Key>
+          <Property Name="TeamChallengeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User1Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="User1Accepted" Type="bit" Nullable="false" />
+          <Property Name="User2Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="User2Accepted" Type="bit" Nullable="false" />
+          <Property Name="User3Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="User3Accepted" Type="bit" Nullable="false" />
+          <Property Name="User4Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="User4Accepted" Type="bit" Nullable="false" />
+          <Property Name="Winner1Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="Result" Type="nvarchar" MaxLength="150" />
+          <Property Name="Confirmed" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_AspNetUsers_Clubs">
           <End Role="Clubs" Type="Self.Clubs" Multiplicity="0..1" />
@@ -200,6 +222,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TeamChallenges_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="TeamChallenges" Type="Self.TeamChallenges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamChallenges">
+              <PropertyRef Name="User1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamChallenges_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="TeamChallenges" Type="Self.TeamChallenges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamChallenges">
+              <PropertyRef Name="User2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamChallenges_AspNetUsers2">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="TeamChallenges" Type="Self.TeamChallenges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamChallenges">
+              <PropertyRef Name="User3Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamChallenges_AspNetUsers3">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="TeamChallenges" Type="Self.TeamChallenges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamChallenges">
+              <PropertyRef Name="User4Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamChallenges_AspNetUsers4">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="TeamChallenges" Type="Self.TeamChallenges" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamChallenges">
+              <PropertyRef Name="Winner1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ClubChallengeModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
@@ -208,6 +290,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clubs" EntityType="Self.Clubs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SingleChallenges" EntityType="Self.SingleChallenges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TeamChallenges" EntityType="Self.TeamChallenges" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AspNetUsers_Clubs" Association="Self.FK_AspNetUsers_Clubs">
             <End Role="Clubs" EntitySet="Clubs" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -244,6 +327,26 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="SingleChallenges" EntitySet="SingleChallenges" />
           </AssociationSet>
+          <AssociationSet Name="FK_TeamChallenges_AspNetUsers" Association="Self.FK_TeamChallenges_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TeamChallenges" EntitySet="TeamChallenges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamChallenges_AspNetUsers1" Association="Self.FK_TeamChallenges_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TeamChallenges" EntitySet="TeamChallenges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamChallenges_AspNetUsers2" Association="Self.FK_TeamChallenges_AspNetUsers2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TeamChallenges" EntitySet="TeamChallenges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamChallenges_AspNetUsers3" Association="Self.FK_TeamChallenges_AspNetUsers3">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TeamChallenges" EntitySet="TeamChallenges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamChallenges_AspNetUsers4" Association="Self.FK_TeamChallenges_AspNetUsers4">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="TeamChallenges" EntitySet="TeamChallenges" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -256,6 +359,7 @@
           <EntitySet Name="AspNetUsers" EntityType="ClubChallengeModel.AspNetUser" />
           <EntitySet Name="Clubs" EntityType="ClubChallengeModel.Club" />
           <EntitySet Name="SingleChallenges" EntityType="ClubChallengeModel.SingleChallenge" />
+          <EntitySet Name="TeamChallenges" EntityType="ClubChallengeModel.TeamChallenge" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ClubChallengeModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -283,6 +387,26 @@
           <AssociationSet Name="FK_SingleChallenges_AspNetUsers2" Association="ClubChallengeModel.FK_SingleChallenges_AspNetUsers2">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="SingleChallenge" EntitySet="SingleChallenges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamChallenges_AspNetUsers" Association="ClubChallengeModel.FK_TeamChallenges_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="TeamChallenge" EntitySet="TeamChallenges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamChallenges_AspNetUsers1" Association="ClubChallengeModel.FK_TeamChallenges_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="TeamChallenge" EntitySet="TeamChallenges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamChallenges_AspNetUsers2" Association="ClubChallengeModel.FK_TeamChallenges_AspNetUsers2">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="TeamChallenge" EntitySet="TeamChallenges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamChallenges_AspNetUsers3" Association="ClubChallengeModel.FK_TeamChallenges_AspNetUsers3">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="TeamChallenge" EntitySet="TeamChallenges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeamChallenges_AspNetUsers4" Association="ClubChallengeModel.FK_TeamChallenges_AspNetUsers4">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="TeamChallenge" EntitySet="TeamChallenges" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="ClubChallengeModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
@@ -337,6 +461,10 @@
           <Property Name="ClubId" Type="Int32" />
           <Property Name="Score" Type="Int32" Nullable="false" />
           <Property Name="Refusals" Type="Int32" Nullable="false" />
+          <Property Name="Trophies" Type="Int32" Nullable="false" />
+          <Property Name="TeamScore" Type="Int32" Nullable="false" />
+          <Property Name="TeamRefusals" Type="Int32" Nullable="false" />
+          <Property Name="TeamTrophies" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="ClubChallengeModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="ClubChallengeModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <NavigationProperty Name="Club" Relationship="ClubChallengeModel.FK_AspNetUsers_Clubs" FromRole="AspNetUser" ToRole="Club" />
@@ -344,6 +472,11 @@
           <NavigationProperty Name="SingleChallenges" Relationship="ClubChallengeModel.FK_SingleChallenges_AspNetUsers" FromRole="AspNetUser" ToRole="SingleChallenge" />
           <NavigationProperty Name="SingleChallenges1" Relationship="ClubChallengeModel.FK_SingleChallenges_AspNetUsers1" FromRole="AspNetUser" ToRole="SingleChallenge" />
           <NavigationProperty Name="SingleChallenges2" Relationship="ClubChallengeModel.FK_SingleChallenges_AspNetUsers2" FromRole="AspNetUser" ToRole="SingleChallenge" />
+          <NavigationProperty Name="TeamChallenges" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers" FromRole="AspNetUser" ToRole="TeamChallenge" />
+          <NavigationProperty Name="TeamChallenges1" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers1" FromRole="AspNetUser" ToRole="TeamChallenge" />
+          <NavigationProperty Name="TeamChallenges2" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers2" FromRole="AspNetUser" ToRole="TeamChallenge" />
+          <NavigationProperty Name="TeamChallenges3" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers3" FromRole="AspNetUser" ToRole="TeamChallenge" />
+          <NavigationProperty Name="TeamChallenges4" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers4" FromRole="AspNetUser" ToRole="TeamChallenge" />
           <NavigationProperty Name="AspNetRoles" Relationship="ClubChallengeModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
         <EntityType Name="Club">
@@ -375,6 +508,29 @@
           <NavigationProperty Name="AspNetUser" Relationship="ClubChallengeModel.FK_SingleChallenges_AspNetUsers" FromRole="SingleChallenge" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUser1" Relationship="ClubChallengeModel.FK_SingleChallenges_AspNetUsers1" FromRole="SingleChallenge" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUser2" Relationship="ClubChallengeModel.FK_SingleChallenges_AspNetUsers2" FromRole="SingleChallenge" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="TeamChallenge">
+          <Key>
+            <PropertyRef Name="TeamChallengeId" />
+          </Key>
+          <Property Name="TeamChallengeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User1Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="User1Accepted" Type="Boolean" Nullable="false" />
+          <Property Name="User2Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="User2Accepted" Type="Boolean" Nullable="false" />
+          <Property Name="User3Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="User3Accepted" Type="Boolean" Nullable="false" />
+          <Property Name="User4Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="User4Accepted" Type="Boolean" Nullable="false" />
+          <Property Name="Winner1Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Confirmed" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers" FromRole="TeamChallenge" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers1" FromRole="TeamChallenge" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser2" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers2" FromRole="TeamChallenge" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser3" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers3" FromRole="TeamChallenge" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser4" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers4" FromRole="TeamChallenge" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="ClubChallengeModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -464,6 +620,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TeamChallenges_AspNetUsers">
+          <End Type="ClubChallengeModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="ClubChallengeModel.TeamChallenge" Role="TeamChallenge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamChallenge">
+              <PropertyRef Name="User1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamChallenges_AspNetUsers1">
+          <End Type="ClubChallengeModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="ClubChallengeModel.TeamChallenge" Role="TeamChallenge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamChallenge">
+              <PropertyRef Name="User2Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamChallenges_AspNetUsers2">
+          <End Type="ClubChallengeModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="ClubChallengeModel.TeamChallenge" Role="TeamChallenge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamChallenge">
+              <PropertyRef Name="User3Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamChallenges_AspNetUsers3">
+          <End Type="ClubChallengeModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="ClubChallengeModel.TeamChallenge" Role="TeamChallenge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamChallenge">
+              <PropertyRef Name="User4Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeamChallenges_AspNetUsers4">
+          <End Type="ClubChallengeModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="ClubChallengeModel.TeamChallenge" Role="TeamChallenge" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamChallenge">
+              <PropertyRef Name="Winner1Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="AspNetUserRoles">
           <End Type="ClubChallengeModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="ClubChallengeModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
@@ -504,6 +720,10 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="ClubChallengeModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="TeamTrophies" ColumnName="TeamTrophies" />
+                <ScalarProperty Name="TeamRefusals" ColumnName="TeamRefusals" />
+                <ScalarProperty Name="TeamScore" ColumnName="TeamScore" />
+                <ScalarProperty Name="Trophies" ColumnName="Trophies" />
                 <ScalarProperty Name="Refusals" ColumnName="Refusals" />
                 <ScalarProperty Name="Score" ColumnName="Score" />
                 <ScalarProperty Name="ClubId" ColumnName="ClubId" />
@@ -546,6 +766,25 @@
                 <ScalarProperty Name="User1Accepted" ColumnName="User1Accepted" />
                 <ScalarProperty Name="User1Id" ColumnName="User1Id" />
                 <ScalarProperty Name="SinglesChallengeId" ColumnName="SinglesChallengeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeamChallenges">
+            <EntityTypeMapping TypeName="ClubChallengeModel.TeamChallenge">
+              <MappingFragment StoreEntitySet="TeamChallenges">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="Winner1Id" ColumnName="Winner1Id" />
+                <ScalarProperty Name="User4Accepted" ColumnName="User4Accepted" />
+                <ScalarProperty Name="User4Id" ColumnName="User4Id" />
+                <ScalarProperty Name="User3Accepted" ColumnName="User3Accepted" />
+                <ScalarProperty Name="User3Id" ColumnName="User3Id" />
+                <ScalarProperty Name="User2Accepted" ColumnName="User2Accepted" />
+                <ScalarProperty Name="User2Id" ColumnName="User2Id" />
+                <ScalarProperty Name="User1Accepted" ColumnName="User1Accepted" />
+                <ScalarProperty Name="User1Id" ColumnName="User1Id" />
+                <ScalarProperty Name="TeamChallengeId" ColumnName="TeamChallengeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

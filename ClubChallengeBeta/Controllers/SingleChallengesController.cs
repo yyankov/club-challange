@@ -26,6 +26,7 @@ namespace ClubChallengeBeta.Controllers
             return View(singleChallenges.ToList());
         }
 
+
         // GET: /SingleChallenges/
         public ActionResult MyChallenges()
         {
@@ -50,6 +51,40 @@ namespace ClubChallengeBeta.Controllers
             db.Entry(singleChallenge).State = EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("MyChallenges");
+        }
+
+        public ActionResult Approve(int id)
+        {
+            SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
+            singleChallenge.Result = "Confirmed";
+            singleChallenge.Confirmed=true;
+            var winner = db.AspNetUsers.SingleOrDefault(e => e.Id == singleChallenge.WinnerId);
+            winner.Score++;
+            db.Entry(singleChallenge).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("WaitingApproval","Challenges");
+        }
+
+        public ActionResult Disapprove(int id)
+        {
+            SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
+            singleChallenge.Result = "Confirmed";
+            singleChallenge.Confirmed = true;
+            if (singleChallenge.WinnerId == singleChallenge.User1Id)
+            {
+                singleChallenge.WinnerId = singleChallenge.User2Id;
+                var winner = db.AspNetUsers.SingleOrDefault(e => e.Id == singleChallenge.WinnerId);
+                winner.Score++;
+            }
+            else
+            {
+                singleChallenge.WinnerId = singleChallenge.User1Id;
+                var winner = db.AspNetUsers.SingleOrDefault(e => e.Id == singleChallenge.WinnerId);
+                winner.Score++;
+            }
+            db.Entry(singleChallenge).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("WaitingApproval", "Challenges");
         }
 
         public ActionResult Accept(int id)

@@ -1,0 +1,133 @@
+﻿@model ClubChallengeBeta.Models.MyChallengesViewModel
+@using Microsoft.AspNet.Identity
+
+<br />
+<p><b>Waiting approval</b></p>
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#single">Singles Challenges</a></li>
+    <li><a data-toggle="tab" href="#multi">Team Challenges</a></li>
+</ul>
+<div class="tab-content">
+    <div id="single" class="tab-pane fade in active">
+        <table class="table">
+            <tr>
+                <th>
+                    Challenger
+                </th>
+                <th>
+
+                </th>
+                <th>
+                    Opponent
+                </th>
+                <th>
+                </th>
+                <th>
+                    Result
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.SingleChallenges)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User1Name)
+                    </td>
+                    <td>
+
+                        <i class="icon ion-ios-tennisball"></i>
+
+                        @if (item.WinnerId == item.User1Id)
+                        {
+                            <i class="ion-ios-star" title="Winner"></i>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User2Name)
+                    </td>
+                    <td>
+
+                        <i class="icon ion-ios-tennisball"></i>
+
+                        @if (item.WinnerId == item.User2Id)
+                        {
+                            <i class="ion-ios-star" title="Winner"></i>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Result)
+                    </td>
+                    <td>
+                        <a class="fa fa-lg fa-thumbs-up" href="@Url.Action("Approve", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Approve Winner"></a>
+                        <a class="fa fa-lg fa-thumbs-down" href="@Url.Action("Disapprove", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Disapprove Winner"></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div id="multi" class="tab-pane fade">
+        <table class="table">
+            <tr>
+                <th>
+                    Challengers
+                </th>
+                <th>
+
+                </th>
+                <th>
+                    Opponents
+                </th>
+                <th>
+                </th>
+                <th>
+                    Result
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.TeamChallenges)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User1Name)
+                        <br />
+                        @Html.DisplayFor(modelItem => item.User2Name)
+                    </td>
+                    <td>
+                        <i class="icon ion-ios-tennisball"></i>
+                        <br />
+                        <i class="icon ion-ios-tennisball"></i>
+                        @if (item.Winner1Id == item.User1Id)
+                        {
+                            <i class="ion-ios-star" title="Winner"></i>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.User3Name)
+                        <br />
+                        @Html.DisplayFor(modelItem => item.User4Name)
+                    </td>
+                    <td>
+                        <i class="icon ion-ios-tennisball"></i>
+                        <br />
+                        <i class="icon ion-ios-tennisball"></i>
+                        @if (item.Winner1Id == item.User3Id)
+                        {
+                            <i class="ion-ios-star" title="Winner"></i>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Result)
+                    </td>
+                    <td>
+                        <a class="fa fa-lg fa-thumbs-up" href="@Url.Action("Approve", "TeamChallenges", new { id = item.TeamChallengeId })" title="Approve Winners"></a>
+                        <a class="fa fa-lg fa-thumbs-down" href="@Url.Action("Disapprove", "TeamChallenges", new { id = item.TeamChallengeId })" title="Disapprove Winners"></a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

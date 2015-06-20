@@ -9,36 +9,34 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-10">
-            <div class="well well-sm">
-                <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <img src="@Url.Action("GetIcon", "Club", new { @id = Model.ClubId })" alt="" class="img-rounded img-responsive" />
-                    </div>
-                    <div class="col-sm-6 col-md-8">
-                        <h4>
-                            @Html.DisplayFor(model => model.Name)
-                        </h4>
-                        <small>
-                            <cite title="San Francisco, USA">
-                                &quot;@Model.Text&quot;
-                            </cite>
-                        </small>
-                        <p>
-                            <i class="fa fa-lg fa-user-secret details-icon"></i>@Model.OwnerName
-                            <br />
-                            <i class="fa fa-lg fa-users details-icon"></i>@Model.UsersCount
-                        </p>
-                        <!-- Split button -->
-                        <div class="btn-group">
-                            @using (Html.BeginForm())
-                            {
-                                @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <img src="@Url.Action("GetIcon", "Club", new { @id = Model.ClubId })" alt="" class="img-rounded img-responsive" />
+                </div>
+                <div class="col-sm-6 col-md-8">
+                    <h4>
+                        @Html.DisplayFor(model => model.Name)
+                    </h4>
+                    <small>
+                        <cite title="San Francisco, USA">
+                            &quot;@Model.Text&quot;
+                        </cite>
+                    </small>
+                    <p>
+                        <i class="fa fa-lg fa-user-secret details-icon"></i>@Model.OwnerName
+                        <br />
+                        <i class="fa fa-lg fa-users details-icon"></i>@Model.UsersCount
+                    </p>
+                    <!-- Split button -->
+                    <div class="btn-group">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-                                <div class="form-actions no-color">
-                                    <input type="submit" value="Delete" class="btn btn-default" />
-                                </div>
-                            }
-                        </div>
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Delete" class="btn btn-default" />
+                            </div>
+                        }
                     </div>
                 </div>
             </div>

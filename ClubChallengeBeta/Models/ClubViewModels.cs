@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ClubChallengeBeta.App_Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace ClubChallengeBeta.Models
 {

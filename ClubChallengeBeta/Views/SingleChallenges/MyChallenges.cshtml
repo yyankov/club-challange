@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<ClubChallengeBeta.App_Data.SingleChallenge>
 @using Microsoft.AspNet.Identity
-
 <table class="table">
     <tr>
         <th>
@@ -29,11 +28,11 @@
             <td>
                 @if (item.User1Accepted)
                 {
-                    <i class="fa fa-lg fa-circle"></i>
+                    <i class="icon ion-ios-tennisball"></i>
                 }
                 else
                 {
-                    <i class="fa fa-lg fa-circle-o"></i>
+                    <i class="icon ion-ios-tennisball-outline"></i>
                 }
             </td>
             <td>
@@ -42,11 +41,11 @@
             <td>
                 @if (item.User2Accepted)
                 {
-                    <i class="fa fa-lg fa-circle"></i>
+                    <i class="icon ion-ios-tennisball"></i>
                 }
                 else
                 {
-                    <i class="fa fa-lg fa-circle-o"></i>
+                    <i class="icon ion-ios-tennisball-outline"></i>
                 }
             </td>
             <td>
@@ -60,19 +59,19 @@
                 }
                 else if (!item.User2Accepted && User.Identity.GetUserId() == item.AspNetUser.Id && String.IsNullOrEmpty(item.Result))
                 {
-                    <i class="fa fa-lg fa-ban" title="Waiting for another user">Pending</i>
+                    <i class="fa fa-lg fa-lightbulb-o " title="Waiting for another user"></i>
                 }
                 else if (item.User2Accepted && item.AspNetUser2 == null)
                 {
                     <a class="fa fa-lg fa-diamond" href="@Url.Action("ClaimVictory", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Claim Victory"></a>
                 }
                 else if (item.User2Accepted && item.AspNetUser2.Id == User.Identity.GetUserId())
-                {                    
+                {
                     <i class="fa fa-lg fa-smile-o"></i>
                 }
                 else if (item.User2Accepted && item.AspNetUser2.Id != User.Identity.GetUserId())
                 {
-                    
+
                     <i class="fa fa-lg fa-frown-o"></i>
                 }
             </td>

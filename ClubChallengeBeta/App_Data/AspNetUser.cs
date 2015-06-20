@@ -23,6 +23,11 @@ namespace ClubChallengeBeta.App_Data
             this.SingleChallenges = new HashSet<SingleChallenge>();
             this.SingleChallenges1 = new HashSet<SingleChallenge>();
             this.SingleChallenges2 = new HashSet<SingleChallenge>();
+            this.TeamChallenges = new HashSet<TeamChallenge>();
+            this.TeamChallenges1 = new HashSet<TeamChallenge>();
+            this.TeamChallenges2 = new HashSet<TeamChallenge>();
+            this.TeamChallenges3 = new HashSet<TeamChallenge>();
+            this.TeamChallenges4 = new HashSet<TeamChallenge>();
             this.AspNetRoles = new HashSet<AspNetRole>();
         }
     
@@ -41,6 +46,10 @@ namespace ClubChallengeBeta.App_Data
         public Nullable<int> ClubId { get; set; }
         public int Score { get; set; }
         public int Refusals { get; set; }
+        public int Trophies { get; set; }
+        public int TeamScore { get; set; }
+        public int TeamRefusals { get; set; }
+        public int TeamTrophies { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -55,6 +64,16 @@ namespace ClubChallengeBeta.App_Data
         public virtual ICollection<SingleChallenge> SingleChallenges1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SingleChallenge> SingleChallenges2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TeamChallenge> TeamChallenges { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TeamChallenge> TeamChallenges1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TeamChallenge> TeamChallenges2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TeamChallenge> TeamChallenges3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TeamChallenge> TeamChallenges4 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }

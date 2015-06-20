@@ -99,7 +99,7 @@ namespace ClubChallengeBeta.Controllers
                 else
                 {
                     club.ImageData = System.IO.File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + "Content/cicon.png");
-                    club.ImageMimeType = "png";
+                    club.ImageMimeType = "image/png";
                 }
                 var userId = User.Identity.GetUserId();
                 club.OwnerId = userId;
@@ -173,6 +173,9 @@ namespace ClubChallengeBeta.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Club club = db.Clubs.Find(id);
+            var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+            currentUser.ClubId = null;
+            db.Entry(currentUser).State = EntityState.Modified;
             db.Clubs.Remove(club);
             db.SaveChanges();
             return RedirectToAction("Index");

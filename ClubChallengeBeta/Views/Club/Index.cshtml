@@ -1,11 +1,14 @@
 ﻿@model ClubChallengeBeta.Models.ClubSearchViewModel
+@if (ViewBag.ClubUser && !Model.HasClub)
+{
+    <p>
+        <br />
+        <a class="btn btn-mini btn-primary pull-right" href="@Url.Action("Create")"><i class="icon ion-ios-people"></i>Create your own club</a>
+    </p>
 
-<p>
-    @if (ViewBag.ClubUser && !Model.HasClub)
-    {
-        @Html.ActionLink("Create your own club", "Create")
-    }
-</p>
+}
+<br />
+<br />
 <table class="table">
     <tr>
         <th>
