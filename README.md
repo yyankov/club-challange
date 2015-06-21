@@ -43,9 +43,14 @@ and ofc... dont try IE8 :D
 19.06.2015 - Version 0.4.0
 * Improve interface
 
-19.06.2015 - Version 0.4.0
+20.06.2015 - Version 0.5.0
 * Add team challenges
 * Add team userboards
+* Small interface imrpovements and bugfixes
+
+21.06.2015 - Version 0.6.0
+* Add reset points/leaderboard 
+* Add trophies
 * Small interface imrpovements and bugfixes
 
 ## Credits
