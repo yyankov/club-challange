@@ -9,12 +9,18 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using ClubChallengeBeta.Models;
+using ClubChallengeBeta.App_Data;
+using System.Net;
+using System.Data.Entity;
 
 namespace ClubChallengeBeta.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+
+        private ClubChallengeEntities db = new ClubChallengeEntities();
+
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
@@ -120,12 +126,39 @@ namespace ClubChallengeBeta.Controllers
             {
                 message = ManageMessageId.Error;
             }
-            return RedirectToAction("Manage", new { Message = message });
+            return RedirectToAction("ChangePassword", new { Message = message });
         }
 
         //
         // GET: /Account/Manage
-        public ActionResult Manage(ManageMessageId? message)
+        public ActionResult Manage()
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == currentUserId);
+            return View(new UpdateAccountViewModel(currentUser));
+        }
+
+        //
+        // POST: /Account/Manage
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Manage(UpdateAccountViewModel user)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            if (ModelState.IsValid)
+            {
+                var dbUser = db.AspNetUsers.SingleOrDefault(e => e.Id == currentUserId);
+                dbUser.PhoneNumber = user.PhoneNumber;
+                dbUser.Email = user.EmailAddress;
+                db.Entry(dbUser).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Details", "UsersClub", new { id = currentUserId });
+        }
+
+
+
+        public ActionResult ChangePassword(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -134,19 +167,17 @@ namespace ClubChallengeBeta.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
             ViewBag.HasLocalPassword = HasPassword();
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action("ChangePassword");
             return View();
         }
 
-        //
-        // POST: /Account/Manage
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Manage(ManageUserViewModel model)
+        public async Task<ActionResult> ChangePassword(ManageUserViewModel model)
         {
             bool hasPassword = HasPassword();
             ViewBag.HasLocalPassword = hasPassword;
-            ViewBag.ReturnUrl = Url.Action("Manage");
+            ViewBag.ReturnUrl = Url.Action("ChangePassword");
             if (hasPassword)
             {
                 if (ModelState.IsValid)
@@ -154,7 +185,7 @@ namespace ClubChallengeBeta.Controllers
                     IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        return RedirectToAction("ChangePassword", new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     else
                     {
@@ -176,7 +207,7 @@ namespace ClubChallengeBeta.Controllers
                     IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        return RedirectToAction("ChangePassword", new { Message = ManageMessageId.SetPasswordSuccess });
                     }
                     else
                     {
@@ -244,14 +275,14 @@ namespace ClubChallengeBeta.Controllers
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
             if (loginInfo == null)
             {
-                return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+                return RedirectToAction("ChangePassword", new { Message = ManageMessageId.Error });
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             if (result.Succeeded)
             {
-                return RedirectToAction("Manage");
+                return RedirectToAction("ChangePassword");
             }
-            return RedirectToAction("Manage", new { Message = ManageMessageId.Error });
+            return RedirectToAction("ChangePassword", new { Message = ManageMessageId.Error });
         }
 
         //
@@ -263,7 +294,7 @@ namespace ClubChallengeBeta.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Manage");
+                return RedirectToAction("ChangePassword");
             }
 
             if (ModelState.IsValid)

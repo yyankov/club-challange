@@ -73,7 +73,7 @@ namespace ClubChallengeBeta.Controllers
 
                 }
             }
-            return RedirectToAction("MyChallenges", "SingleChallenges");
+            return RedirectToAction("Index", "Challenges");
         }
 
         // GET: /UsersClub/
@@ -124,7 +124,7 @@ namespace ClubChallengeBeta.Controllers
 
                 }
             }
-            return RedirectToAction("MyChallenges", "SingleChallenges");
+            return RedirectToAction("Index", "Challenges");
         }
 
 

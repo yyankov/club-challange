@@ -23,6 +23,7 @@ namespace ClubChallengeBeta.Models
         public string Email { get; set; }
         public int? ClubId { get; set; }
         public string ClubName { get; set; }
+        public int TrophyCount { get; set; }
         public int ChallengeCount { get; set; }
         public bool CanChallenge { get; set; }
 
@@ -34,7 +35,13 @@ namespace ClubChallengeBeta.Models
             Email = dbUser.Email;
             ClubId = dbUser.ClubId;
             ClubName = dbUser.Club.Name;
-            ChallengeCount = dbUser.SingleChallenges.Count;
+            ChallengeCount = dbUser.SingleChallenges.Count
+                + dbUser.SingleChallenges1.Count
+                + dbUser.TeamChallenges.Count
+                + dbUser.TeamChallenges1.Count
+                + dbUser.TeamChallenges2.Count
+                + dbUser.TeamChallenges3.Count;
+            TrophyCount = dbUser.Trophies + dbUser.TeamTrophies;
             CanChallenge = dbUser.Id != user.Id && dbUser.ClubId == user.ClubId && dbUser.ClubId != null;
         }
     }
