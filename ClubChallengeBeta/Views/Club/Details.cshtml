@@ -37,7 +37,7 @@
                                             <td></td>
                                         }
                                     </tr>
-                                    @foreach (var user in Model.Users)
+                                    @foreach (var user in Model.SinglesLeaders)
                                     {
                                         <tr>
                                             <td>@user.UserName</td>
@@ -72,7 +72,7 @@
                                             <td></td>
                                         }
                                     </tr>
-                                    @foreach (var user in Model.Users)
+                                    @foreach (var user in Model.TeamLeaders)
                                     {
                                         <tr>
                                             <td>@user.UserName</td>

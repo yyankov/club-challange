@@ -13,12 +13,16 @@ namespace ClubChallengeBeta.Models
         public string UserName { get; set; }
         public int Score { get; set; }
         public int TeamScore { get; set; }
+        public int Trophies { get; set; }
+        public int TeamTrophies { get; set; }
         public UserViewModel(AspNetUser user)
         {
             UserId = user.Id;
             UserName = user.UserName;
             Score = user.Score;
             TeamScore = user.TeamScore;
+            Trophies = user.Trophies;
+            TeamTrophies = user.TeamTrophies;
         }
     }
     public class ClubViewModel
@@ -31,6 +35,8 @@ namespace ClubChallengeBeta.Models
         public int UsersCount { get; set; }
         public bool OwnClub { get; set; }
         public List<UserViewModel> Users { get; set; }
+        public List<UserViewModel> SinglesLeaders { get; set; }
+        public List<UserViewModel> TeamLeaders { get; set; }
 
         public ClubViewModel(Club club, AspNetUser user)
         {

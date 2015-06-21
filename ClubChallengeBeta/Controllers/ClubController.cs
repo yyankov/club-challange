@@ -72,7 +72,9 @@ namespace ClubChallengeBeta.Controllers
 
             ViewBag.CanJoin = currentUser.Club == null;
             var result = new ClubViewModel(club, currentUser);
-            result.Users = club.AspNetUsers.Select(e => new UserViewModel(e)).OrderByDescending(e => e.Score).ToList();
+            result.Users = club.AspNetUsers.Select(e => new UserViewModel(e)).OrderByDescending(e => e.Trophies + e.TeamTrophies).ToList();
+            result.SinglesLeaders = club.AspNetUsers.Select(e => new UserViewModel(e)).OrderByDescending(e => e.Score).ToList();
+            result.TeamLeaders = club.AspNetUsers.Select(e => new UserViewModel(e)).OrderByDescending(e => e.TeamScore).ToList();
             return View(result);
         }
 
