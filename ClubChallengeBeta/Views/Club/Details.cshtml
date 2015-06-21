@@ -3,7 +3,6 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-10">
-            <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
                         <img src="@Url.Action("GetIcon", "Club", new { @id = Model.ClubId })" alt="" class="img-rounded img-responsive" />
@@ -37,7 +36,7 @@
                                             <td></td>
                                         }
                                     </tr>
-                                    @foreach (var user in Model.Users)
+                                    @foreach (var user in Model.SinglesLeaders)
                                     {
                                         <tr>
                                             <td>@user.UserName</td>
@@ -45,7 +44,7 @@
                                             @if (@User.Identity.GetUserId() == Model.OwnerId)
                                             {
                                                 <td>
-                                                    <a class="fa fa-lg fa-ban" href="@Url.Action("ResetSinglesPoints", "Club", new { @id = Model.ClubId })"></a>
+                                                    <a class="fa fa-lg fa-ban" href="@Url.Action("ResetSinglesPoints", "Club", new { @id = user.UserId })"></a>
                                                 </td>
                                             }
                                         </tr>
@@ -72,7 +71,7 @@
                                             <td></td>
                                         }
                                     </tr>
-                                    @foreach (var user in Model.Users)
+                                    @foreach (var user in Model.TeamLeaders)
                                     {
                                         <tr>
                                             <td>@user.UserName</td>
@@ -80,7 +79,7 @@
                                             @if (@User.Identity.GetUserId() == Model.OwnerId)
                                             {
                                                 <td>
-                                                    <a class="fa fa-lg fa-ban" href="@Url.Action("ResetTeamPoints", "Club", new { @id = Model.ClubId })"></a>
+                                                    <a class="fa fa-lg fa-ban" href="@Url.Action("ResetTeamPoints", "Club", new { @id = user.UserId })"></a>
                                                 </td>
                                             }
                                         </tr>
@@ -116,7 +115,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

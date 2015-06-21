@@ -42,7 +42,7 @@ namespace ClubChallengeBeta.Controllers
             }
             db.Entry(singleChallenge).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("MyChallenges");
+            return RedirectToAction("Index", "Challenges");
         }
 
         public ActionResult Approve(int id)
@@ -86,7 +86,7 @@ namespace ClubChallengeBeta.Controllers
             singleChallenge.Result = "Accepted";
             db.Entry(singleChallenge).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("MyChallenges");
+            return RedirectToAction("Index", "Challenges");
         }
 
 
@@ -104,7 +104,7 @@ namespace ClubChallengeBeta.Controllers
                 db.Entry(singleChallenge).State = EntityState.Modified;
                 db.SaveChanges();
             }
-            return RedirectToAction("MyChallenges");
+            return RedirectToAction("Index", "Challenges");
         }
         // GET: /SingleChallenges/Details/5
         public ActionResult Details(int? id)

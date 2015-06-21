@@ -21,10 +21,12 @@
                         }
                         @if (!String.IsNullOrEmpty(Model.Email))
                         {
-                        <i class="fa fa-lg fa-envelope details-icon"></i>@Model.Email
-                        <br />
+                            <i class="fa fa-lg fa-envelope details-icon"></i>@Model.Email
+                            <br />
                         }
                         <i class="icon ion-ios-tennisball details-icon" style="font-size: 24px;"></i>@Model.ChallengeCount
+                        <br />
+                        <i class="icon ion-trophy details-icon" style="font-size: 24px;"></i>@Model.TrophyCount
                         <br />
                         <i class="fa fa-university details-icon"></i>@Model.ClubName
                     </p>
@@ -32,8 +34,12 @@
                     <div class="btn-group">
                         @if (Model.CanChallenge)
                         {
-                            <a class="btn btn-sm btn-primary" href="@Url.Action("Challenge", "SingleChallenge", new { @id = Model.ClubId })"><i class="icon ion-person button-icon"></i>Single Challenge</a>
-                            <a class="btn btn-sm btn-danger" href="@Url.Action("Challenge", "MultiChallenge", new { @id = Model.ClubId })"><i class="icon ion-person-add button-icon"></i>Team Challenge</a>
+                            <a class="btn btn-sm btn-primary" href="@Url.Action("Challenge", "UsersClub", new { @id = Model.ClubId })"><i class="icon ion-person button-icon"></i>Single Challenge</a>
+                            <a class="modal-link btn btn-sm btn-danger" href="@Url.Action("MultiChallenge", "UsersClub", new { @id = Model.ClubId })"><i class="icon ion-person-add button-icon"></i>Team Challenge</a>
+                        }
+                        else
+                        {
+                            <a class="modal-link btn btn-sm btn-primary" href="@Url.Action("Manage", "Account")"><i class="glyphicon glyphicon-pencil"></i>Update Info</a>
                         }
                     </div>
                 </div>

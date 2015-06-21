@@ -73,7 +73,7 @@ namespace ClubChallengeBeta.Controllers
             }
             db.Entry(teamChallenge).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("MyChallenges");
+            return RedirectToAction("Index", "Challenges");
         }
 
         public ActionResult Accept(int id)
@@ -100,7 +100,7 @@ namespace ClubChallengeBeta.Controllers
             }
             db.Entry(teamChallenge).State = EntityState.Modified;
             db.SaveChanges();
-            return RedirectToAction("MyChallenges");
+            return RedirectToAction("Index", "Challenges");
         }
 
 

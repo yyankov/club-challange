@@ -342,6 +342,7 @@
     <Content Include="Views\TeamChallenges\Index.cshtml" />
     <Content Include="Views\Challenges\Index.cshtml" />
     <Content Include="Views\Challenges\WaitingApproval.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
