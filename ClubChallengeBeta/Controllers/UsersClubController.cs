@@ -81,7 +81,10 @@ namespace ClubChallengeBeta.Controllers
         public ActionResult MultiChallenge(string id)
         {
             var currentUserId = User.Identity.GetUserId();
-            var users = db.AspNetUsers.Where(e => e.Id != currentUserId).Select(e => new SelectListItem
+            var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == currentUserId);
+            var users = db.AspNetUsers
+                .Where(e => e.Id != currentUserId && e.ClubId == currentUser.ClubId)
+                .Select(e => new SelectListItem
             {
                 Text = e.UserName,
                 Value = e.Id

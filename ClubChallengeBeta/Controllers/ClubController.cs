@@ -130,10 +130,8 @@ namespace ClubChallengeBeta.Controllers
             return View(club);
         }
 
-        // POST: /Clubs/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Club")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ClubId,OwnerId,Name,Text,ImageData,ImageMimeType")] Club club, HttpPostedFileBase image)
         {
@@ -153,6 +151,7 @@ namespace ClubChallengeBeta.Controllers
         }
 
 
+        [Authorize(Roles = "Club")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -167,7 +166,7 @@ namespace ClubChallengeBeta.Controllers
             return View(new ClubViewModel(club, db.AspNetUsers.Find(User.Identity.GetUserId())));
         }
 
-
+        [Authorize(Roles = "Club")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -191,8 +190,6 @@ namespace ClubChallengeBeta.Controllers
             else { return null; }
         }
 
-
-
         public ActionResult Join(int id)
         {
             var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
@@ -209,8 +206,6 @@ namespace ClubChallengeBeta.Controllers
             return RedirectToAction("Details", new { id = id });
         }
 
-
-
         public ActionResult Leave(int id)
         {
             try
@@ -222,6 +217,162 @@ namespace ClubChallengeBeta.Controllers
                 currentUser.ClubId = null;
                 db.Entry(currentUser).State = EntityState.Modified;
                 db.SaveChanges();
+            }
+            catch
+            {
+
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
+
+        [Authorize(Roles = "Club")]
+        public ActionResult ResetSinglesPoints(string id)
+        {
+
+            var user = db.AspNetUsers.SingleOrDefault(e => e.Id == id);
+            try
+            {
+                var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+
+                if (user.ClubId != currentUser.ClubId)
+                { }
+                else
+                {
+                    user.Score = 0;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+
+            }
+            return RedirectToAction("Details", new { id = user.ClubId });
+        }
+
+        [Authorize(Roles = "Club")]
+        public ActionResult ResetSinglesBoard(int id)
+        {
+            try
+            {
+                var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+                if (id != currentUser.ClubId)
+                { }
+                else
+                {
+                    var club = db.Clubs.SingleOrDefault(e => e.ClubId == id);
+                    foreach (var user in club.AspNetUsers)
+                    {
+                        user.Score = 0;
+                    }
+                    db.Entry(club).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
+
+        [Authorize(Roles = "Club")]
+        public ActionResult GiveSinglesReward(int id)
+        {
+            try
+            {
+                var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+                if (id != currentUser.ClubId)
+                { }
+                else
+                {
+                    var club = db.Clubs.SingleOrDefault(e => e.ClubId == id);
+                    club.AspNetUsers.OrderByDescending(e => e.Score).FirstOrDefault().Trophies++;
+                    foreach (var user in club.AspNetUsers)
+                    {
+                        user.Score = 0;
+                    }
+                    db.Entry(club).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
+
+        [Authorize(Roles = "Club")]
+        public ActionResult ResetTeamPoints(string id)
+        {
+
+            var user = db.AspNetUsers.SingleOrDefault(e => e.Id == id);
+            try
+            {
+                var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+
+                if (user.ClubId != currentUser.ClubId)
+                { }
+                else
+                {
+                    user.TeamScore = 0;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+
+            }
+            return RedirectToAction("Details", new { id = user.ClubId });
+        }
+
+        [Authorize(Roles = "Club")]
+        public ActionResult ResetTeamBoard(int id)
+        {
+            try
+            {
+                var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+                if (id != currentUser.ClubId)
+                { }
+                else
+                {
+                    var club = db.Clubs.SingleOrDefault(e => e.ClubId == id);
+                    foreach (var user in club.AspNetUsers)
+                    {
+                        user.TeamScore = 0;
+                    }
+                    db.Entry(club).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
+
+        [Authorize(Roles = "Club")]
+        public ActionResult GiveTeamReward(int id)
+        {
+            try
+            {
+                var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+                if (id != currentUser.ClubId)
+                { }
+                else
+                {
+                    var club = db.Clubs.SingleOrDefault(e => e.ClubId == id);
+                    club.AspNetUsers.OrderByDescending(e => e.Score).FirstOrDefault().TeamTrophies++;
+                    foreach (var user in club.AspNetUsers)
+                    {
+                        user.TeamScore = 0;
+                    }
+                    db.Entry(club).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
             }
             catch
             {
