@@ -45,7 +45,7 @@
                                             @if (@User.Identity.GetUserId() == Model.OwnerId)
                                             {
                                                 <td>
-                                                    <a class="fa fa-lg fa-ban" href="@Url.Action("ResetSinglesPoints", "Club", new { @id = Model.ClubId })"></a>
+                                                    <a class="fa fa-lg fa-ban" href="@Url.Action("ResetSinglesPoints", "Club", new { @id = user.UserId })"></a>
                                                 </td>
                                             }
                                         </tr>

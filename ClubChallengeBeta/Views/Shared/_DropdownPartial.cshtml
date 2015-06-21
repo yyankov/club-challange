@@ -16,11 +16,11 @@
                 <li>@Html.ActionLink("Account", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
                 <li class="divider"></li>
                 <li>
-                    @Html.ActionLink("My Club", "Index", "UsersClub", routeValues: null, htmlAttributes: new { title = "My Club" })
+                    <a class="icon icon ion-ios-people" href="@Url.Action("Index", "UsersClub")"> My Club</a>
                 </li>
                 <li>
-                    @Html.ActionLink("My Challenges", "Index", "Challenges", routeValues: null, htmlAttributes: new { title = "My Challenges" })
-                </li>
+                    <a class="icon ion-ios-tennisball-outline" href="@Url.Action("Index", "Challenges")"> My Challenges</a>
+               </li>
                 <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-ban"> Log off</i></a></li>
 
             </ul>
