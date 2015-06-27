@@ -22,6 +22,13 @@ namespace ClubChallengeBeta.Utils
             }
             return clubUser;
         }
+
+        public static bool HasClub(string userid)
+        {
+            var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == userid);
+            return currentUser.Club != null;
+        }
+
         public static int PendingChallenges(string currentUserId)
         {
             AspNetUser currentUser = db.AspNetUsers.Find(currentUserId);
