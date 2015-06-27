@@ -182,6 +182,11 @@ namespace ClubChallengeBeta.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Gallery()
+        {
+            return View();
+        }
+
         public FileContentResult GetIcon(int id)
         {
             Club club = db.Clubs.Find(id);

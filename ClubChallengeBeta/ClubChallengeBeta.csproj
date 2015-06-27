@@ -171,10 +171,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Data\ClubImage.cs">
+      <DependentUpon>ClubChallengeEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Data\SingleChallenge.cs">
       <DependentUpon>ClubChallengeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Data\TeamChallenge.cs">
+      <DependentUpon>ClubChallengeEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Data\UserImage.cs">
       <DependentUpon>ClubChallengeEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
