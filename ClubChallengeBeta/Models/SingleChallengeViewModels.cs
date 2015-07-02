@@ -64,4 +64,23 @@ namespace ClubChallengeBeta.Models
             }
         }
     }
+
+    public class GameScore
+    {
+        public int Games1 { get; set; }
+        public int Games2 { get; set; }
+    }
+
+    public class SingleChallengesVictoryModel
+    {
+        public int SinglesChallengeId { get; set; }
+        public string User1Name { get; set; }
+        public string User2Name { get; set; }
+        public string Result { get; set; }
+        public int Sets1 { get; set; }
+        public int Sets2 { get; set; }
+
+        public List<GameScore> GameScores { get; set; }
+
+    }
 }

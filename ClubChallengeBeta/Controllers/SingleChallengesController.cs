@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using ClubChallengeBeta.App_Data;
+using ClubChallengeBeta.Models;
 
 namespace ClubChallengeBeta.Controllers
 {
@@ -90,20 +91,38 @@ namespace ClubChallengeBeta.Controllers
         }
 
 
+        // GET: /UsersClub/
+        [HttpGet]
         public ActionResult ClaimVictory(int id)
         {
-            string currentUserId = User.Identity.GetUserId();
-            SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
-            if (singleChallenge.AspNetUser.Id != currentUserId && singleChallenge.AspNetUser1.Id != currentUserId)
-            {
-            }
-            else
-            {
-                singleChallenge.WinnerId = currentUserId;
-                singleChallenge.Result = "Waiting approval";
-                db.Entry(singleChallenge).State = EntityState.Modified;
-                db.SaveChanges();
-            }
+            var currentUserId = User.Identity.GetUserId();
+            var singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
+            var singleChallengeVM = new SingleChallengesVictoryModel();
+            singleChallengeVM.SinglesChallengeId = singleChallenge.SinglesChallengeId;
+            singleChallengeVM.User1Name = singleChallenge.AspNetUser.UserName;
+            singleChallengeVM.User2Name = singleChallenge.AspNetUser1.UserName;
+            var gameScores = new List<GameScore>();
+            singleChallengeVM.GameScores = gameScores;
+            singleChallengeVM.GameScores.Add(new GameScore());
+            singleChallengeVM.GameScores.Add(new GameScore());
+            singleChallengeVM.GameScores.Add(new GameScore());
+            return PartialView("_ClaimVictory", singleChallengeVM);
+        }
+
+        public ActionResult ClaimVictory(SingleChallengesVictoryModel id)
+        {
+            //string currentUserId = User.Identity.GetUserId();
+            //SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
+            //if (singleChallenge.AspNetUser.Id != currentUserId && singleChallenge.AspNetUser1.Id != currentUserId)
+            //{
+            //}
+            //else
+            //{
+            //    singleChallenge.WinnerId = currentUserId;
+            //    singleChallenge.Result = "Waiting approval";
+            //    db.Entry(singleChallenge).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //}
             return RedirectToAction("Index", "Challenges");
         }
         // GET: /SingleChallenges/Details/5
