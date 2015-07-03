@@ -93,4 +93,19 @@ namespace ClubChallengeBeta.Models
             }
         }
     }
+
+    public class TeamChallengesVictoryModel
+    {
+        public int SinglesChallengeId { get; set; }
+        public string User1Name { get; set; }
+        public string User2Name { get; set; }
+        public string User3Name { get; set; }
+        public string User4Name { get; set; }
+        public string Result { get; set; }
+        public int Sets1 { get; set; }
+        public int Sets2 { get; set; }
+
+        public List<GameScore> GameScores { get; set; }
+
+    }
 }
