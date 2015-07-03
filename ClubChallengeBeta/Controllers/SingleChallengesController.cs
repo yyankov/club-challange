@@ -109,20 +109,28 @@ namespace ClubChallengeBeta.Controllers
             return PartialView("_ClaimVictory", singleChallengeVM);
         }
 
-        public ActionResult ClaimVictory(SingleChallengesVictoryModel id)
+        public ActionResult ClaimVictory(SingleChallengesVictoryModel result)
         {
-            //string currentUserId = User.Identity.GetUserId();
-            //SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == id);
-            //if (singleChallenge.AspNetUser.Id != currentUserId && singleChallenge.AspNetUser1.Id != currentUserId)
-            //{
-            //}
-            //else
-            //{
-            //    singleChallenge.WinnerId = currentUserId;
-            //    singleChallenge.Result = "Waiting approval";
-            //    db.Entry(singleChallenge).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //}
+            string currentUserId = User.Identity.GetUserId();
+            SingleChallenge singleChallenge = db.SingleChallenges.SingleOrDefault(e => e.SinglesChallengeId == result.SinglesChallengeId);
+            if (singleChallenge.AspNetUser.Id != currentUserId && singleChallenge.AspNetUser1.Id != currentUserId)
+            {
+            }
+            else
+            {
+                singleChallenge.WinnerId = currentUserId;
+                singleChallenge.Sets1 = result.Sets1;
+                singleChallenge.Sets2 = result.Sets2;
+                singleChallenge.Games11 = result.GameScores[0].Games1;
+                singleChallenge.Games12 = result.GameScores[0].Games2;
+                singleChallenge.Games21 = result.GameScores[1].Games1;
+                singleChallenge.Games22 = result.GameScores[1].Games2;
+                singleChallenge.Games31 = result.GameScores[2].Games1;
+                singleChallenge.Games32 = result.GameScores[2].Games2;
+                singleChallenge.Result = "Waiting approval";
+                db.Entry(singleChallenge).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return RedirectToAction("Index", "Challenges");
         }
         // GET: /SingleChallenges/Details/5
