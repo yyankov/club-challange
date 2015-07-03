@@ -104,28 +104,47 @@ namespace ClubChallengeBeta.Controllers
         }
 
 
+        [HttpGet]
         public ActionResult ClaimVictory(int id)
         {
             var currentUserId = User.Identity.GetUserId();
             var teamChallenge = db.TeamChallenges.SingleOrDefault(e => e.TeamChallengeId == id);
-            if (teamChallenge.User1Id != currentUserId && teamChallenge.User2Id != currentUserId && teamChallenge.User3Id != currentUserId && teamChallenge.User4Id != currentUserId)
-            {
-            }
-            else
-            {
-                if (teamChallenge.User1Id == currentUserId || teamChallenge.User2Id == currentUserId)
-                {
-                    teamChallenge.Winner1Id = teamChallenge.User1Id;
-                }
-                else
-                {
-                    teamChallenge.Winner1Id = teamChallenge.User3Id;
+            var teamChallengeVM = new TeamChallengesVictoryModel();
+            teamChallengeVM.SinglesChallengeId = teamChallenge.TeamChallengeId;
+            teamChallengeVM.User1Name = teamChallenge.AspNetUser.UserName;
+            teamChallengeVM.User2Name = teamChallenge.AspNetUser1.UserName;
+            teamChallengeVM.User3Name = teamChallenge.AspNetUser2.UserName;
+            teamChallengeVM.User4Name = teamChallenge.AspNetUser3.UserName;
+            var gameScores = new List<GameScore>();
+            teamChallengeVM.GameScores = gameScores;
+            teamChallengeVM.GameScores.Add(new GameScore());
+            teamChallengeVM.GameScores.Add(new GameScore());
+            teamChallengeVM.GameScores.Add(new GameScore());
+            return PartialView("_ClaimVictory", teamChallengeVM);
+        }
 
-                }
-                teamChallenge.Result = "Waiting approval";
-                db.Entry(teamChallenge).State = EntityState.Modified;
-                db.SaveChanges();
-            }
+        public ActionResult ClaimVictory(int id)
+        {
+            //var currentUserId = User.Identity.GetUserId();
+            //var teamChallenge = db.TeamChallenges.SingleOrDefault(e => e.TeamChallengeId == id);
+            //if (teamChallenge.User1Id != currentUserId && teamChallenge.User2Id != currentUserId && teamChallenge.User3Id != currentUserId && teamChallenge.User4Id != currentUserId)
+            //{
+            //}
+            //else
+            //{
+            //    if (teamChallenge.User1Id == currentUserId || teamChallenge.User2Id == currentUserId)
+            //    {
+            //        teamChallenge.Winner1Id = teamChallenge.User1Id;
+            //    }
+            //    else
+            //    {
+            //        teamChallenge.Winner1Id = teamChallenge.User3Id;
+
+            //    }
+            //    teamChallenge.Result = "Waiting approval";
+            //    db.Entry(teamChallenge).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //}
             return RedirectToAction("Index", "Challenges");
         }
 
