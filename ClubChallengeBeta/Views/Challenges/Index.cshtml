@@ -70,7 +70,7 @@
                         }
                         else if (item.CanDeclareWin)
                         {
-                            <a class="modal-link fa-lg fa-diamond" href="@Url.Action("ClaimVictory", "SingleChallenges", new { @id = item.SinglesChallengeId }) title=" claim victory""></a>
+                            <a class="modal-link fa-lg fa-diamond" href="@Url.Action("ClaimVictory", "SingleChallenges", new { @id = item.SinglesChallengeId })" title="Claim Victory"></a>
                         }
                         else if (item.PendingAcceptance && item.IsWinner)
                         {
