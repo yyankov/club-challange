@@ -123,7 +123,7 @@ namespace ClubChallengeBeta.Controllers
             return PartialView("_ClaimVictory", teamChallengeVM);
         }
 
-        public ActionResult ClaimVictory(int id)
+        public ActionResult ClaimVictory(TeamChallengesVictoryModel id)
         {
             //var currentUserId = User.Identity.GetUserId();
             //var teamChallenge = db.TeamChallenges.SingleOrDefault(e => e.TeamChallengeId == id);
