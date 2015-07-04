@@ -270,6 +270,10 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Icon.png" />
+    <Content Include="Scripts\blueimp-gallery.js" />
+    <Content Include="Scripts\blueimp-gallery.min.js" />
+    <Content Include="Scripts\bootstrap-image-gallery.js" />
+    <Content Include="Scripts\bootstrap-image-gallery.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />

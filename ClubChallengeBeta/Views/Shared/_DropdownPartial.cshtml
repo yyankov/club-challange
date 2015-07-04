@@ -4,7 +4,7 @@
 <ul class="nav navbar-nav navbar-right">
     @if (Request.IsAuthenticated)
     {
-        if (NavbarUtils.IsClubUser(User.Identity.GetUserId()))
+        if (NavbarUtils.IsClubUser(User.Identity.GetUserId()) && NavbarUtils.HasClub(User.Identity.GetUserId()))
         {
             <li>
                 <a class="ion-email-unread" title="Waiting Approval"style="font-size: 20px;" href="@Url.Action("WaitingApproval", "Challenges")">@NavbarUtils.PendingChallenges(User.Identity.GetUserId())</a>
