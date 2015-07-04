@@ -362,6 +362,7 @@
     <Content Include="Views\SingleChallenges\_ClaimVictory.cshtml" />
     <Content Include="Views\TeamChallenges\_ClaimVictory.cshtml" />
     <Content Include="Views\Club\Gallery.cshtml" />
+    <Content Include="Views\Challenges\List.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
