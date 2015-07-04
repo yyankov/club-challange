@@ -1,0 +1,166 @@
+﻿@model ClubChallengeBeta.Models.SingleChallengesVictoryModel
+@using Microsoft.AspNet.Identity
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/validation.js">
+</script>
+<div class="modal-body">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Team Challenge</h4>
+    </div>
+    @using (Html.BeginForm("ClaimVictory", "SingleChallenges", FormMethod.Post, new { @id = "multi" }))
+    {
+        <script>
+            $.validator.unobtrusive.parse("#multi");
+        </script>
+        <div class="modal-body">
+            <div class="row">
+                <div class="row">
+                    <div class="alert alert-warning score-alert" style="display:none;" role="alert">
+                        <strong>
+                            Please insert a valid score!
+                        </strong>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="editor-label">
+                        <strong>Challenger</strong>
+                    </div>
+                    <div class="editor-field">
+                        <input type="text" class="form-control" disabled value="@Model.User1Name">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="editor-label">
+                        <strong>Opponent</strong>
+                    </div>
+                    <div class="editor-field">
+                        <input type="text" class="form-control" disabled value="@Model.User2Name">
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div style="text-align:center;">
+                    <strong>Sets</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-4">
+                    <div class="editor-label">
+                        <strong></strong>
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.Sets1, new { @class = "form-control sets sets-1" })
+                        @Html.HiddenFor(m => m.SinglesChallengeId)
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="editor-label">
+                        <strong></strong>
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.Sets2, new { @class = "form-control sets sets-2" })
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div style="text-align:center;">
+                    <strong>Games</strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-4">
+                    <div class="editor-label">
+                        <strong></strong>
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.GameScores[0].Games1, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="editor-label">
+                        <strong></strong>
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.GameScores[0].Games2, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top:5px;">
+                <div class="col-sm-2 col-sm-offset-4">
+                    <div class="editor-label">
+                        <strong></strong>
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.GameScores[1].Games1, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="editor-label">
+                        <strong></strong>
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.GameScores[1].Games2, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="row game-3" style="display: none; margin-top: 5px;">
+                <div class="col-sm-2 col-sm-offset-4">
+                    <div class="editor-label">
+                        <strong></strong>
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.GameScores[2].Games1, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="editor-label">
+                        <strong></strong>
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(m => m.GameScores[2].Games2, new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <hr />
+        <div class="row">
+            <div class="btn-group pull-right" role="group" style="margin-right:15px;">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="submit" id="approve-btn" class="btn btn-primary">
+                    Claim Victory
+                </button>
+            </div>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".sets").change(function () {
+            if (parseInt($(".sets-1").val()) + parseInt($(".sets-2").val()) === 3) {
+                $(".game-3").show();
+                $(".score-alert").hide();
+            } else if (parseInt($(".sets-1").val()) + parseInt($(".sets-2").val()) === 2) {
+                if (parseInt($(".sets-1").val()) === 1) {
+                    $(".score-alert").show();
+                } else {
+                    $(".score-alert").hide();
+                }
+                $(".game-3").hide();
+            } else {
+                $(".score-alert").show();
+            }
+        });
+    });
+</script>

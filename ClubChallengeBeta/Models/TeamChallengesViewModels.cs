@@ -23,12 +23,13 @@ namespace ClubChallengeBeta.Models
         public string Winner1Id { get; set; }
         public bool User4Accepted { get; set; }
         public string Result { get; set; }
-
+        
         public bool CanAcceptReject { get; set; }
         public bool CanDeclareWin { get; set; }
         public bool PendingAcceptance { get; set; }
         public bool PendingApproval { get; set; }
         public bool IsWinner { get; set; }
+        public string ScoreText { get; set; }
 
         public TeamChallengesViewModel(TeamChallenge tc, AspNetUser currentUser)
         {
@@ -81,6 +82,10 @@ namespace ClubChallengeBeta.Models
                 {
                     IsWinner = tc.User3Id == currentUser.Id || tc.User4Id == currentUser.Id;
                 }
+
+                ScoreText = tc.Sets1 + tc.Sets2 == 2 ?
+                    String.Format("{0}:{1}, {2}:{3}", tc.Games11, tc.Games12, tc.Games21, tc.Games22) :
+                    String.Format("{0}:{1}, {2}:{3}, {4}:{5}", tc.Games11, tc.Games12, tc.Games21, tc.Games22, tc.Games31, tc.Games32);
             }
 
             if (Result == "Accepted")
@@ -92,5 +97,20 @@ namespace ClubChallengeBeta.Models
                 PendingApproval = true;
             }
         }
+    }
+
+    public class TeamChallengesVictoryModel
+    {
+        public int TeamChallengeId { get; set; }
+        public string User1Name { get; set; }
+        public string User2Name { get; set; }
+        public string User3Name { get; set; }
+        public string User4Name { get; set; }
+        public string Result { get; set; }
+        public int? Sets1 { get; set; }
+        public int? Sets2 { get; set; }
+
+        public List<GameScore> GameScores { get; set; }
+
     }
 }

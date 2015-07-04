@@ -56,7 +56,7 @@
                         }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Result)
+                        @Html.DisplayFor(modelItem => item.ScoreText)
                     </td>
                     <td>
                         <a class="fa fa-lg fa-thumbs-up" href="@Url.Action("Approve", "SingleChallenges", new { id = item.SinglesChallengeId })" title="Approve Winner"></a>
@@ -119,7 +119,7 @@
                         }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Result)
+                        @Html.DisplayFor(modelItem => item.ScoreText)
                     </td>
                     <td>
                         <a class="fa fa-lg fa-thumbs-up" href="@Url.Action("Approve", "TeamChallenges", new { id = item.TeamChallengeId })" title="Approve Winners"></a>

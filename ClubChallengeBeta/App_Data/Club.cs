@@ -11,8 +11,7 @@ namespace ClubChallengeBeta.App_Data
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Club
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,15 +19,14 @@ namespace ClubChallengeBeta.App_Data
         {
             this.AspNetUsers = new HashSet<AspNetUser>();
         }
-
+    
         public int ClubId { get; set; }
         public string OwnerId { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Text { get; set; }
         public byte[] ImageData { get; set; }
         public string ImageMimeType { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
