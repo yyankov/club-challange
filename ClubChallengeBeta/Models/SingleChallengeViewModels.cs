@@ -23,6 +23,7 @@ namespace ClubChallengeBeta.Models
         public bool PendingAcceptance { get; set; }
         public bool PendingApproval { get; set; }
         public bool IsWinner { get; set; }
+        public string ScoreText { get; set; }
 
         public SingleChallengesViewModel(SingleChallenge sc, AspNetUser currentUser)
         {
@@ -52,6 +53,10 @@ namespace ClubChallengeBeta.Models
             if (sc.WinnerId != null)
             {
                 IsWinner = sc.WinnerId == currentUser.Id;
+
+                ScoreText = sc.Sets1 + sc.Sets2 == 2 ?
+                    String.Format("{0}:{1}, {2}:{3}",sc.Games11,sc.Games12,sc.Games21,sc.Games22) :
+                    String.Format("{0}:{1}, {2}:{3}, {4}:{5}", sc.Games11, sc.Games12, sc.Games21, sc.Games22, sc.Games31, sc.Games32);
             }
 
             if (Result == "Accepted")
@@ -67,8 +72,8 @@ namespace ClubChallengeBeta.Models
 
     public class GameScore
     {
-        public int Games1 { get; set; }
-        public int Games2 { get; set; }
+        public int? Games1 { get; set; }
+        public int? Games2 { get; set; }
     }
 
     public class SingleChallengesVictoryModel
@@ -77,8 +82,8 @@ namespace ClubChallengeBeta.Models
         public string User1Name { get; set; }
         public string User2Name { get; set; }
         public string Result { get; set; }
-        public int Sets1 { get; set; }
-        public int Sets2 { get; set; }
+        public int? Sets1 { get; set; }
+        public int? Sets2 { get; set; }
 
         public List<GameScore> GameScores { get; set; }
 
