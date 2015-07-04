@@ -21,6 +21,7 @@ namespace ClubChallengeBeta.Controllers
         {
             string id = User.Identity.GetUserId();
             var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == id);
+            ViewBag.ClubName = currentUser.Club.Name;
             var teamChallenges = db.TeamChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2).Include(s => s.AspNetUser3).Include(s => s.AspNetUser4);
             teamChallenges = teamChallenges.Where(e => e.AspNetUser.Id == id || e.AspNetUser1.Id == id || e.AspNetUser2.Id == id || e.AspNetUser3.Id == id);
 

@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<ClubChallengeBeta.App_Data.SingleChallenge>
 @using Microsoft.AspNet.Identity
-
+<br />
+<p><b>Challenges in @ViewBag.ClubName</b></p>
 <table class="table">
     <tr>
         <th>
@@ -28,11 +29,11 @@
             <td>
                 @if (item.User1Accepted)
                 {
-                    <i class="fa fa-lg fa-circle"></i>
+                    <i class="icon ion-ios-tennisball"></i>
                 }
                 else
                 {
-                    <i class="fa fa-lg fa-circle-o"></i>
+                    <i class="icon ion-ios-tennisball-outline"></i>
                 }
                 @if (item.WinnerId == item.AspNetUser.Id)
                 {
@@ -45,11 +46,11 @@
             <td>
                 @if (item.User2Accepted)
                 {
-                    <i class="fa fa-lg fa-circle"></i>
+                    <i class="icon ion-ios-tennisball"></i>
                 }
                 else
                 {
-                    <i class="fa fa-lg fa-circle-o"></i>
+                    <i class="icon ion-ios-tennisball-outline"></i>
                 }
                 @if (item.WinnerId == item.AspNetUser1.Id)
                 {

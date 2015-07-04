@@ -20,6 +20,7 @@ namespace ClubChallengeBeta.Controllers
         public ActionResult Index()
         {
             var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+            ViewBag.ClubName = currentUser.Club.Name;
             var aspNetUsers = db.AspNetUsers.Include(a => a.Club).Where(e => e.ClubId == currentUser.ClubId);
             var users = aspNetUsers.Select(e => new SimpleUserViewModel()
             {
