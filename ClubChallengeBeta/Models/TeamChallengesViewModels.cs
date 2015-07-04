@@ -96,7 +96,7 @@ namespace ClubChallengeBeta.Models
 
     public class TeamChallengesVictoryModel
     {
-        public int SinglesChallengeId { get; set; }
+        public int TeamChallengeId { get; set; }
         public string User1Name { get; set; }
         public string User2Name { get; set; }
         public string User3Name { get; set; }

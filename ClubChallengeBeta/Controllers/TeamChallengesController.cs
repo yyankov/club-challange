@@ -110,7 +110,7 @@ namespace ClubChallengeBeta.Controllers
             var currentUserId = User.Identity.GetUserId();
             var teamChallenge = db.TeamChallenges.SingleOrDefault(e => e.TeamChallengeId == id);
             var teamChallengeVM = new TeamChallengesVictoryModel();
-            teamChallengeVM.SinglesChallengeId = teamChallenge.TeamChallengeId;
+            teamChallengeVM.TeamChallengeId = teamChallenge.TeamChallengeId;
             teamChallengeVM.User1Name = teamChallenge.AspNetUser.UserName;
             teamChallengeVM.User2Name = teamChallenge.AspNetUser1.UserName;
             teamChallengeVM.User3Name = teamChallenge.AspNetUser2.UserName;
@@ -123,28 +123,36 @@ namespace ClubChallengeBeta.Controllers
             return PartialView("_ClaimVictory", teamChallengeVM);
         }
 
-        public ActionResult ClaimVictory(TeamChallengesVictoryModel id)
+        public ActionResult ClaimVictory(TeamChallengesVictoryModel result)
         {
-            //var currentUserId = User.Identity.GetUserId();
-            //var teamChallenge = db.TeamChallenges.SingleOrDefault(e => e.TeamChallengeId == id);
-            //if (teamChallenge.User1Id != currentUserId && teamChallenge.User2Id != currentUserId && teamChallenge.User3Id != currentUserId && teamChallenge.User4Id != currentUserId)
-            //{
-            //}
-            //else
-            //{
-            //    if (teamChallenge.User1Id == currentUserId || teamChallenge.User2Id == currentUserId)
-            //    {
-            //        teamChallenge.Winner1Id = teamChallenge.User1Id;
-            //    }
-            //    else
-            //    {
-            //        teamChallenge.Winner1Id = teamChallenge.User3Id;
+            var currentUserId = User.Identity.GetUserId();
+            var teamChallenge = db.TeamChallenges.SingleOrDefault(e => e.TeamChallengeId == result.TeamChallengeId);
+            if (teamChallenge.User1Id != currentUserId && teamChallenge.User2Id != currentUserId && teamChallenge.User3Id != currentUserId && teamChallenge.User4Id != currentUserId)
+            {
+            }
+            else
+            {
+                if (teamChallenge.User1Id == currentUserId || teamChallenge.User2Id == currentUserId)
+                {
+                    teamChallenge.Winner1Id = teamChallenge.User1Id;
+                }
+                else
+                {
+                    teamChallenge.Winner1Id = teamChallenge.User3Id;
 
-            //    }
-            //    teamChallenge.Result = "Waiting approval";
-            //    db.Entry(teamChallenge).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //}
+                }
+                teamChallenge.Sets1 = result.Sets1;
+                teamChallenge.Sets2 = result.Sets2;
+                teamChallenge.Games11 = result.GameScores[0].Games1;
+                teamChallenge.Games12 = result.GameScores[0].Games2;
+                teamChallenge.Games21 = result.GameScores[1].Games1;
+                teamChallenge.Games22 = result.GameScores[1].Games2;
+                teamChallenge.Games31 = result.GameScores[2].Games1;
+                teamChallenge.Games32 = result.GameScores[2].Games2;
+                teamChallenge.Result = "Waiting approval";
+                db.Entry(teamChallenge).State = EntityState.Modified;
+                db.SaveChanges();
+            }
             return RedirectToAction("Index", "Challenges");
         }
 

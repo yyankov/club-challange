@@ -11,7 +11,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Team Challenge</h4>
     </div>
-    @using (Html.BeginForm("ClaimSinglesVictory", "UsersClub", FormMethod.Post, new { @id = "multi" }))
+    @using (Html.BeginForm("ClaimVictory", "TeamChallenges", FormMethod.Post, new { @id = "multi" }))
     {
         <script>
             $.validator.unobtrusive.parse("#multi");
@@ -67,6 +67,7 @@
                     </div>
                     <div class="editor-field">
                         @Html.TextBoxFor(m => m.Sets1, new { @class = "form-control sets-1" })
+                        @Html.HiddenFor(m => m.TeamChallengeId)
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -102,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="margin-top:5px;">
                 <div class="col-sm-2 col-sm-offset-4">
                     <div class="editor-label">
                         <strong></strong>
@@ -120,7 +121,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row game-3" style="display:none;">
+            <div class="row game-3" style="display: none; margin-top: 5px;">
                 <div class="col-sm-2 col-sm-offset-4">
                     <div class="editor-label">
                         <strong></strong>
