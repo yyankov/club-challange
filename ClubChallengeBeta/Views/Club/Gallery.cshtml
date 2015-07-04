@@ -1,4 +1,6 @@
 ﻿@model ClubChallengeBeta.App_Data.ClubImage
+<br />
+<p><b>@ViewBag.ClubName Gallery</b></p>
 @if (ViewBag.CanAddImage)
 {
     using (Html.BeginForm("AddImage", "Club", FormMethod.Post, new { enctype = "multipart/form-data" }))

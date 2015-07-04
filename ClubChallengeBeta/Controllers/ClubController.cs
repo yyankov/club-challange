@@ -186,6 +186,7 @@ namespace ClubChallengeBeta.Controllers
         {
             var club = db.Clubs.Find(id);
             var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+            ViewBag.ClubName = currentUser.Club.Name;
             ViewBag.CanAddImage = club.OwnerId == currentUser.Id;
             ViewBag.Images = club.ClubImages.Select(e => new ClubImageViewModel()
             {

@@ -23,14 +23,14 @@ namespace ClubChallengeBeta.Controllers
             var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == id);
             ViewBag.ClubName = currentUser.Club.Name;
             var teamChallenges = db.TeamChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2).Include(s => s.AspNetUser3).Include(s => s.AspNetUser4);
-            teamChallenges = teamChallenges.Where(e => e.AspNetUser.Id == id || e.AspNetUser1.Id == id || e.AspNetUser2.Id == id || e.AspNetUser3.Id == id);
+            teamChallenges = teamChallenges.Where(e => e.AspNetUser.Id == id || e.AspNetUser1.Id == id || e.AspNetUser2.Id == id || e.AspNetUser3.Id == id).Where(p => !p.Confirmed); ;
 
             var teamChallengesView = teamChallenges.ToList().Select(e => new TeamChallengesViewModel(e, currentUser));
 
 
 
             var singleChallenges = db.SingleChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2);
-            singleChallenges = singleChallenges.Where(e => e.AspNetUser.Id == id || e.AspNetUser1.Id == id);
+            singleChallenges = singleChallenges.Where(e => e.AspNetUser.Id == id || e.AspNetUser1.Id == id).Where(p => !p.Confirmed);
             var singleChallengesView = singleChallenges.ToList().Select(e => new SingleChallengesViewModel(e, currentUser));
             var result = new MyChallengesViewModel();
             result.TeamChallenges = teamChallengesView;
@@ -56,5 +56,5 @@ namespace ClubChallengeBeta.Controllers
             result.SingleChallenges = singleChallengesView;
             return View(result);
         }
-	}
+    }
 }
