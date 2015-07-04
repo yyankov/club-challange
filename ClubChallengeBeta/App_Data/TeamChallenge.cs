@@ -27,6 +27,14 @@ namespace ClubChallengeBeta.App_Data
         public string Result { get; set; }
         public bool Confirmed { get; set; }
         public System.DateTime DateCreated { get; set; }
+        public Nullable<int> Sets1 { get; set; }
+        public Nullable<int> Sets2 { get; set; }
+        public Nullable<int> Games11 { get; set; }
+        public Nullable<int> Games12 { get; set; }
+        public Nullable<int> Games21 { get; set; }
+        public Nullable<int> Games22 { get; set; }
+        public Nullable<int> Games31 { get; set; }
+        public Nullable<int> Games32 { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual AspNetUser AspNetUser1 { get; set; }

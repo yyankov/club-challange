@@ -113,6 +113,14 @@
           <Property Name="Result" Type="nvarchar" MaxLength="150" />
           <Property Name="Confirmed" Type="bit" Nullable="false" />
           <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="Sets1" Type="int" />
+          <Property Name="Sets2" Type="int" />
+          <Property Name="Games11" Type="int" />
+          <Property Name="Games12" Type="int" />
+          <Property Name="Games21" Type="int" />
+          <Property Name="Games22" Type="int" />
+          <Property Name="Games31" Type="int" />
+          <Property Name="Games32" Type="int" />
         </EntityType>
         <Association Name="FK_AspNetUsers_Clubs">
           <End Role="Clubs" Type="Self.Clubs" Multiplicity="0..1" />
@@ -542,6 +550,14 @@
           <Property Name="Result" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Confirmed" Type="Boolean" Nullable="false" />
           <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Sets1" Type="Int32" />
+          <Property Name="Sets2" Type="Int32" />
+          <Property Name="Games11" Type="Int32" />
+          <Property Name="Games12" Type="Int32" />
+          <Property Name="Games21" Type="Int32" />
+          <Property Name="Games22" Type="Int32" />
+          <Property Name="Games31" Type="Int32" />
+          <Property Name="Games32" Type="Int32" />
           <NavigationProperty Name="AspNetUser" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers" FromRole="TeamChallenge" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUser1" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers1" FromRole="TeamChallenge" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUser2" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers2" FromRole="TeamChallenge" ToRole="AspNetUser" />
@@ -796,6 +812,14 @@
           <EntitySetMapping Name="TeamChallenges">
             <EntityTypeMapping TypeName="ClubChallengeModel.TeamChallenge">
               <MappingFragment StoreEntitySet="TeamChallenges">
+                <ScalarProperty Name="Games32" ColumnName="Games32" />
+                <ScalarProperty Name="Games31" ColumnName="Games31" />
+                <ScalarProperty Name="Games22" ColumnName="Games22" />
+                <ScalarProperty Name="Games21" ColumnName="Games21" />
+                <ScalarProperty Name="Games12" ColumnName="Games12" />
+                <ScalarProperty Name="Games11" ColumnName="Games11" />
+                <ScalarProperty Name="Sets2" ColumnName="Sets2" />
+                <ScalarProperty Name="Sets1" ColumnName="Sets1" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
                 <ScalarProperty Name="Result" ColumnName="Result" />
