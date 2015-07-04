@@ -1,0 +1,79 @@
+﻿@model ClubChallengeBeta.App_Data.ClubImage
+@if (ViewBag.CanAddImage)
+{
+    using (Html.BeginForm("AddImage", "Club", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(e => e.ClubId)
+        <div class="form-group">
+            <div class="col-md-12">
+                <div>Add new image: <input type="file" name="Image" /> </div>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top:10px;">
+
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add Image" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr />
+    }
+}
+<!-- The container for the list of example images -->
+<div id="links">
+    @foreach (var image in ViewBag.Images)
+    {
+        <a href="@Url.Action("GetClubImage", "Club", new { @id = image.ClubImageId })" data-gallery="">
+            <img src="@Url.Action("GetClubImage", "Club", new { @id = image.ClubImageId })" style="height: 100px; width: 100px; ">
+        </a>
+    }
+
+</div>
+<br>
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">×</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="btn btn-sm btn-primary" href="@Url.Action("Details", "Club", new { @id = Model.ClubId })"><i class="fa fa-lg fa-users btn-icon"></i>Back</a>
+<script type="text/javascript">
+    document.getElementById('links').onclick = function (event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement,
+            link = target.src ? target.parentNode : target,
+            options = { index: link, event: event, useBootstrapModal: false },
+            links = this.getElementsByTagName('a');
+        blueimp.Gallery(links, options);
+    };
+</script>
