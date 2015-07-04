@@ -34,7 +34,7 @@ namespace ClubChallengeBeta.Models
             Phone = dbUser.PhoneNumber;
             Email = dbUser.Email;
             ClubId = dbUser.ClubId;
-            ClubName = dbUser.Club.Name;
+            ClubName = dbUser.Club != null? dbUser.Club.Name : "none";
             ChallengeCount = dbUser.SingleChallenges.Count
                 + dbUser.SingleChallenges1.Count
                 + dbUser.TeamChallenges.Count

@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.ComponentModel.DataAnnotations;
 using ClubChallengeBeta.App_Data;
 
 namespace ClubChallengeBeta.Models
@@ -91,18 +94,34 @@ namespace ClubChallengeBeta.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
 
+        public byte[] ImageData { get; set; }
+        public string ImageMimeType { get; set; }
+        public string UserId { get; set; }
+
         public UpdateAccountViewModel()
         {
             UserName = "";
             EmailAddress = "";
             PhoneNumber = "";
+            var bytes =  new List<byte>();
+            ImageData = bytes.ToArray();
+            ImageMimeType = "";
+            UserId = "";
         }
 
         public UpdateAccountViewModel(AspNetUser dbUser)
         {
+            UserId = dbUser.Id;
             UserName = dbUser.UserName;
             EmailAddress = dbUser.Email;
             PhoneNumber = dbUser.PhoneNumber;
+            if (dbUser.UserImages.Count > 0)
+            {
+
+                var image = dbUser.UserImages.SingleOrDefault();
+                ImageData = image.ImageData;
+                ImageMimeType = image.ImageMimeType;
+            }
         }
     }
 }

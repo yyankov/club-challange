@@ -98,6 +98,13 @@ namespace ClubChallengeBeta.Controllers
                     {
                         userManager.AddToRole(user.Id, "Private");
                         await SignInAsync(user, isPersistent: false);
+                        var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+                        var userImage = new UserImage();
+                        userImage.UserId = user.Id;
+                        userImage.ImageData = System.IO.File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + "Content/default.png");
+                        userImage.ImageMimeType = "image/png";
+                        db.UserImages.Add(userImage);
+                        db.SaveChanges();
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -150,21 +157,22 @@ namespace ClubChallengeBeta.Controllers
             {
                 if (image != null)
                 {
-                    if (dbUser.UserImages.Count == 0)
+                    if (dbUser.UserImages.Count > 0)
                     {
                         var userImage = dbUser.UserImages.SingleOrDefault();
                         userImage.ImageMimeType = image.ContentType;
                         userImage.ImageData = new byte[image.ContentLength];
                         image.InputStream.Read(userImage.ImageData, 0, image.ContentLength);
-                        db.UserImages.Add(userImage);
+                        db.Entry(userImage).State = EntityState.Modified;
                     }
                     else
                     {
                         var userImage = new UserImage();
+                        userImage.UserId = dbUser.Id;
                         userImage.ImageMimeType = image.ContentType;
                         userImage.ImageData = new byte[image.ContentLength];
                         image.InputStream.Read(userImage.ImageData, 0, image.ContentLength);
-                        db.Entry(userImage).State = EntityState.Modified;
+                        db.UserImages.Add(userImage);
                     }
                 }
                 dbUser.PhoneNumber = user.PhoneNumber;
@@ -377,6 +385,18 @@ namespace ClubChallengeBeta.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public FileContentResult GetImage(string id)
+        {
+            var user = db.AspNetUsers.Find(id);
+            if (user.UserImages.Count > 0)
+            {
+                var image = user.UserImages.SingleOrDefault();
+                return File(image.ImageData, image.ImageMimeType);
+            }
+            else { return null; }
+        }
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins
