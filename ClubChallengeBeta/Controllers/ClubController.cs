@@ -182,6 +182,49 @@ namespace ClubChallengeBeta.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Gallery(int id)
+        {
+            var club = db.Clubs.Find(id);
+            var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+            ViewBag.ClubName = club.Name;
+            ViewBag.CanAddImage = club.OwnerId == currentUser.Id;
+            ViewBag.Images = club.ClubImages.Select(e => new ClubImageViewModel()
+            {
+                ClubImageId = e.ClubImageId
+            });
+            var clubImage = new ClubImage();
+            clubImage.ClubId = id;
+            return View(clubImage);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Club")]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddImage(ClubImage clubImage, HttpPostedFileBase image)
+        {
+            if (image != null)
+            {
+                var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+
+                clubImage.ImageMimeType = image.ContentType;
+                clubImage.ImageData = new byte[image.ContentLength];
+                image.InputStream.Read(clubImage.ImageData, 0, image.ContentLength);
+                db.ClubImages.Add(clubImage);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Gallery", new { id = clubImage.ClubId });
+        }
+
+        public FileContentResult GetClubImage(int id)
+        {
+            var clubImage = db.ClubImages.Find(id);
+            if (clubImage != null)
+            {
+                return File(clubImage.ImageData, clubImage.ImageMimeType);
+            }
+            else { return null; }
+        }
+
         public FileContentResult GetIcon(int id)
         {
             Club club = db.Clubs.Find(id);

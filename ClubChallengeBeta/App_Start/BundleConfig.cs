@@ -18,13 +18,17 @@ namespace ClubChallengeBeta
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
-
+            //blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                      "~/Scripts/blueimp-gallery.js",
+                      "~/Scripts/bootstrap-image-gallery.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/blueimp-gallery.css",
+                      "~/Content/bootstrap-image-gallery.css",
                       "~/Content/bootstrap-social.css",
                       "~/Content/font-awesome.css",
                       "~/Content/ionicons.css",

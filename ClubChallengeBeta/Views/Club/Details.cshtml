@@ -99,6 +99,7 @@
                             </div>
                         </div>
                         <div class="btn-group">
+                            <a class="btn btn-sm btn-primary" href="@Url.Action("Gallery", "Club", new { @id = Model.ClubId })"><i class="fa fa-lg fa-picture-o button-icon"></i>Gallery</a>
                             @if (@User.Identity.GetUserId() == Model.OwnerId)
                             {
                                 <a class="btn btn-sm btn-primary" href="@Url.Action("Edit", "Club", new { @id = Model.ClubId })"><i class="fa fa-lg fa-pencil button-icon"></i>Edit info</a>

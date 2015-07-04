@@ -113,3 +113,17 @@ a.multi-challenge
      display: block;
      text-indent: -9999px; /* hides the link text */
 }
+
+.user-icon {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    display: table-cell;
+    text-align: center;
+    margin: 0 auto;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+    float:left;
+    margin-right:5px;
+}
