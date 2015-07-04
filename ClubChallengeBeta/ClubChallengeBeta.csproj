@@ -253,6 +253,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\cc.gif" />
     <Content Include="Content\cicon.png" />
+    <Content Include="Content\default.png" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\ionicons.css" />
     <Content Include="Content\ionicons.min.css" />
