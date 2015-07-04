@@ -56,5 +56,25 @@ namespace ClubChallengeBeta.Controllers
             result.SingleChallenges = singleChallengesView;
             return View(result);
         }
+
+        public ActionResult List()
+        {
+            string id = User.Identity.GetUserId();
+            var currentUser = db.AspNetUsers.SingleOrDefault(e => e.Id == id);
+            ViewBag.ClubName = currentUser.Club.Name;
+            var currentClubId = currentUser.Club.ClubId;
+            var teamChallenges = db.TeamChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2).Include(s => s.AspNetUser3).Include(s => s.AspNetUser4);
+            teamChallenges = teamChallenges.Where(e => e.AspNetUser.ClubId == currentClubId || e.AspNetUser1.ClubId == currentClubId || e.AspNetUser2.ClubId == currentClubId || e.AspNetUser3.ClubId == currentClubId); ;
+
+            var teamChallengesView = teamChallenges.ToList().Select(e => new TeamChallengesViewModel(e, currentUser));
+
+            var singleChallenges = db.SingleChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2);
+            singleChallenges = singleChallenges.Where(e => e.AspNetUser.ClubId == currentClubId || e.AspNetUser1.ClubId == currentClubId);
+            var singleChallengesView = singleChallenges.ToList().Select(e => new SingleChallengesViewModel(e, currentUser));
+            var result = new MyChallengesViewModel();
+            result.TeamChallenges = teamChallengesView;
+            result.SingleChallenges = singleChallengesView;
+            return View(result);
+        }
     }
 }
