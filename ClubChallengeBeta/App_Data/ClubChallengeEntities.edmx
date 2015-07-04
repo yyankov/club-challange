@@ -63,6 +63,15 @@
           <Property Name="TeamRefusals" Type="int" Nullable="false" />
           <Property Name="TeamTrophies" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="ClubImages">
+          <Key>
+            <PropertyRef Name="ClubImageId" />
+          </Key>
+          <Property Name="ClubImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClubId" Type="int" Nullable="false" />
+          <Property Name="ImageData" Type="varbinary(max)" />
+          <Property Name="ImageMimeType" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Clubs">
           <Key>
             <PropertyRef Name="ClubId" />
@@ -122,6 +131,15 @@
           <Property Name="Games31" Type="int" />
           <Property Name="Games32" Type="int" />
         </EntityType>
+        <EntityType Name="UserImages">
+          <Key>
+            <PropertyRef Name="UserImageId" />
+          </Key>
+          <Property Name="UserImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ImageData" Type="varbinary(max)" />
+          <Property Name="ImageMimeType" Type="varchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_AspNetUsers_Clubs">
           <End Role="Clubs" Type="Self.Clubs" Multiplicity="0..1" />
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
@@ -130,6 +148,18 @@
               <PropertyRef Name="ClubId" />
             </Principal>
             <Dependent Role="AspNetUsers">
+              <PropertyRef Name="ClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClubImages_Clubs">
+          <End Role="Clubs" Type="Self.Clubs" Multiplicity="1" />
+          <End Role="ClubImages" Type="Self.ClubImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clubs">
+              <PropertyRef Name="ClubId" />
+            </Principal>
+            <Dependent Role="ClubImages">
               <PropertyRef Name="ClubId" />
             </Dependent>
           </ReferentialConstraint>
@@ -298,18 +328,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserImages_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserImages" Type="Self.UserImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserImages">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="ClubChallengeModelStoreContainer">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClubImages" EntityType="Self.ClubImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clubs" EntityType="Self.Clubs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SingleChallenges" EntityType="Self.SingleChallenges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TeamChallenges" EntityType="Self.TeamChallenges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserImages" EntityType="Self.UserImages" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AspNetUsers_Clubs" Association="Self.FK_AspNetUsers_Clubs">
             <End Role="Clubs" EntitySet="Clubs" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClubImages_Clubs" Association="Self.FK_ClubImages_Clubs">
+            <End Role="Clubs" EntitySet="Clubs" />
+            <End Role="ClubImages" EntitySet="ClubImages" />
           </AssociationSet>
           <AssociationSet Name="FK_Clubs_AspNetUsers" Association="Self.FK_Clubs_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -363,6 +411,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="TeamChallenges" EntitySet="TeamChallenges" />
           </AssociationSet>
+          <AssociationSet Name="FK_UserImages_AspNetUsers" Association="Self.FK_UserImages_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserImages" EntitySet="UserImages" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -373,9 +425,11 @@
           <EntitySet Name="AspNetUserClaims" EntityType="ClubChallengeModel.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="ClubChallengeModel.AspNetUserLogin" />
           <EntitySet Name="AspNetUsers" EntityType="ClubChallengeModel.AspNetUser" />
+          <EntitySet Name="ClubImages" EntityType="ClubChallengeModel.ClubImage" />
           <EntitySet Name="Clubs" EntityType="ClubChallengeModel.Club" />
           <EntitySet Name="SingleChallenges" EntityType="ClubChallengeModel.SingleChallenge" />
           <EntitySet Name="TeamChallenges" EntityType="ClubChallengeModel.TeamChallenge" />
+          <EntitySet Name="UserImages" EntityType="ClubChallengeModel.UserImage" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="ClubChallengeModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
@@ -423,6 +477,14 @@
           <AssociationSet Name="FK_TeamChallenges_AspNetUsers4" Association="ClubChallengeModel.FK_TeamChallenges_AspNetUsers4">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="TeamChallenge" EntitySet="TeamChallenges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserImages_AspNetUsers" Association="ClubChallengeModel.FK_UserImages_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserImage" EntitySet="UserImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClubImages_Clubs" Association="ClubChallengeModel.FK_ClubImages_Clubs">
+            <End Role="Club" EntitySet="Clubs" />
+            <End Role="ClubImage" EntitySet="ClubImages" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="ClubChallengeModel.AspNetUserRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
@@ -493,7 +555,18 @@
           <NavigationProperty Name="TeamChallenges2" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers2" FromRole="AspNetUser" ToRole="TeamChallenge" />
           <NavigationProperty Name="TeamChallenges3" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers3" FromRole="AspNetUser" ToRole="TeamChallenge" />
           <NavigationProperty Name="TeamChallenges4" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers4" FromRole="AspNetUser" ToRole="TeamChallenge" />
+          <NavigationProperty Name="UserImages" Relationship="ClubChallengeModel.FK_UserImages_AspNetUsers" FromRole="AspNetUser" ToRole="UserImage" />
           <NavigationProperty Name="AspNetRoles" Relationship="ClubChallengeModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+        </EntityType>
+        <EntityType Name="ClubImage">
+          <Key>
+            <PropertyRef Name="ClubImageId" />
+          </Key>
+          <Property Name="ClubImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClubId" Type="Int32" Nullable="false" />
+          <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Club" Relationship="ClubChallengeModel.FK_ClubImages_Clubs" FromRole="ClubImage" ToRole="Club" />
         </EntityType>
         <EntityType Name="Club">
           <Key>
@@ -507,6 +580,7 @@
           <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AspNetUsers" Relationship="ClubChallengeModel.FK_AspNetUsers_Clubs" FromRole="Club" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUser" Relationship="ClubChallengeModel.FK_Clubs_AspNetUsers" FromRole="Club" ToRole="AspNetUser" />
+          <NavigationProperty Name="ClubImages" Relationship="ClubChallengeModel.FK_ClubImages_Clubs" FromRole="Club" ToRole="ClubImage" />
         </EntityType>
         <EntityType Name="SingleChallenge">
           <Key>
@@ -563,6 +637,16 @@
           <NavigationProperty Name="AspNetUser2" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers2" FromRole="TeamChallenge" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUser3" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers3" FromRole="TeamChallenge" ToRole="AspNetUser" />
           <NavigationProperty Name="AspNetUser4" Relationship="ClubChallengeModel.FK_TeamChallenges_AspNetUsers4" FromRole="TeamChallenge" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="UserImage">
+          <Key>
+            <PropertyRef Name="UserImageId" />
+          </Key>
+          <Property Name="UserImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ImageMimeType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="ClubChallengeModel.FK_UserImages_AspNetUsers" FromRole="UserImage" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Type="ClubChallengeModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
@@ -712,6 +796,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_UserImages_AspNetUsers">
+          <End Type="ClubChallengeModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="ClubChallengeModel.UserImage" Role="UserImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserImage">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClubImages_Clubs">
+          <End Type="ClubChallengeModel.Club" Role="Club" Multiplicity="1" />
+          <End Type="ClubChallengeModel.ClubImage" Role="ClubImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Club">
+              <PropertyRef Name="ClubId" />
+            </Principal>
+            <Dependent Role="ClubImage">
+              <PropertyRef Name="ClubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="AspNetUserRoles">
           <End Type="ClubChallengeModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
           <End Type="ClubChallengeModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
@@ -774,6 +882,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ClubImages">
+            <EntityTypeMapping TypeName="ClubChallengeModel.ClubImage">
+              <MappingFragment StoreEntitySet="ClubImages">
+                <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+                <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+                <ScalarProperty Name="ClubId" ColumnName="ClubId" />
+                <ScalarProperty Name="ClubImageId" ColumnName="ClubImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Clubs">
             <EntityTypeMapping TypeName="ClubChallengeModel.Club">
               <MappingFragment StoreEntitySet="Clubs">
@@ -833,6 +951,16 @@
                 <ScalarProperty Name="User1Accepted" ColumnName="User1Accepted" />
                 <ScalarProperty Name="User1Id" ColumnName="User1Id" />
                 <ScalarProperty Name="TeamChallengeId" ColumnName="TeamChallengeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserImages">
+            <EntityTypeMapping TypeName="ClubChallengeModel.UserImage">
+              <MappingFragment StoreEntitySet="UserImages">
+                <ScalarProperty Name="ImageMimeType" ColumnName="ImageMimeType" />
+                <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserImageId" ColumnName="UserImageId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

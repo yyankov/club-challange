@@ -28,6 +28,7 @@ namespace ClubChallengeBeta.App_Data
             this.TeamChallenges2 = new HashSet<TeamChallenge>();
             this.TeamChallenges3 = new HashSet<TeamChallenge>();
             this.TeamChallenges4 = new HashSet<TeamChallenge>();
+            this.UserImages = new HashSet<UserImage>();
             this.AspNetRoles = new HashSet<AspNetRole>();
         }
     
@@ -74,6 +75,8 @@ namespace ClubChallengeBeta.App_Data
         public virtual ICollection<TeamChallenge> TeamChallenges3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TeamChallenge> TeamChallenges4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserImage> UserImages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }

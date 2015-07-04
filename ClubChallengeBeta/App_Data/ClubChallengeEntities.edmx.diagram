@@ -5,13 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e8817e0d16494806b44ba0c7ece77975" Name="Diagram1" ZoomLevel="70">
-        <EntityTypeShape EntityType="ClubChallengeModel.AspNetRole" Width="1.5" PointX="0.75" PointY="11.125" />
-        <EntityTypeShape EntityType="ClubChallengeModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="1.875" />
-        <EntityTypeShape EntityType="ClubChallengeModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="4.625" />
-        <EntityTypeShape EntityType="ClubChallengeModel.AspNetUser" Width="1.5" PointX="3" PointY="8.375" />
-        <EntityTypeShape EntityType="ClubChallengeModel.Club" Width="1.5" PointX="5.25" PointY="12.75" />
-        <EntityTypeShape EntityType="ClubChallengeModel.SingleChallenge" Width="1.5" PointX="5.25" PointY="7.125" />
-        <EntityTypeShape EntityType="ClubChallengeModel.TeamChallenge" Width="1.5" PointX="5.25" PointY="16" />
+        <EntityTypeShape EntityType="ClubChallengeModel.AspNetRole" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ClubChallengeModel.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="23.125" />
+        <EntityTypeShape EntityType="ClubChallengeModel.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="11.5" />
+        <EntityTypeShape EntityType="ClubChallengeModel.AspNetUser" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="ClubChallengeModel.ClubImage" Width="1.5" PointX="7.5" PointY="20" />
+        <EntityTypeShape EntityType="ClubChallengeModel.Club" Width="1.5" PointX="5.25" PointY="19.625" />
+        <EntityTypeShape EntityType="ClubChallengeModel.SingleChallenge" Width="1.5" PointX="5.25" PointY="14" />
+        <EntityTypeShape EntityType="ClubChallengeModel.TeamChallenge" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="ClubChallengeModel.UserImage" Width="1.5" PointX="5.25" PointY="2" />
         <AssociationConnector Association="ClubChallengeModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="ClubChallengeModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="ClubChallengeModel.FK_AspNetUsers_Clubs" />
@@ -24,6 +26,8 @@
         <AssociationConnector Association="ClubChallengeModel.FK_TeamChallenges_AspNetUsers2" />
         <AssociationConnector Association="ClubChallengeModel.FK_TeamChallenges_AspNetUsers3" />
         <AssociationConnector Association="ClubChallengeModel.FK_TeamChallenges_AspNetUsers4" />
+        <AssociationConnector Association="ClubChallengeModel.FK_UserImages_AspNetUsers" />
+        <AssociationConnector Association="ClubChallengeModel.FK_ClubImages_Clubs" />
         <AssociationConnector Association="ClubChallengeModel.AspNetUserRoles" />
       </Diagram>
     </edmx:Diagrams>

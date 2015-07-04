@@ -18,6 +18,7 @@ namespace ClubChallengeBeta.App_Data
         public Club()
         {
             this.AspNetUsers = new HashSet<AspNetUser>();
+            this.ClubImages = new HashSet<ClubImage>();
         }
     
         public int ClubId { get; set; }
@@ -30,5 +31,7 @@ namespace ClubChallengeBeta.App_Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ClubImage> ClubImages { get; set; }
     }
 }
