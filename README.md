@@ -1,7 +1,8 @@
 # Project Name
 
 Club Challenge
-Live demo at: https://clubchallenge.somee.com
+Live demo at: https://clubchallenge.somee.com (not working - no sotrage)
+Live demo at: https://clubchallenge1.somee.com
 
 ## Installation
 
@@ -51,6 +52,18 @@ and ofc... dont try IE8 :D
 21.06.2015 - Version 0.6.0
 * Add reset points/leaderboard 
 * Add trophies
+* Small interface imrpovements and bugfixes
+* 
+03.07.2015 - Version 0.7.0
+* Add scores
+* Small interface imrpovements and bugfixes
+
+04.07.2015 - Version 0.8.0
+* Add club gallery
+* Small interface imrpovements and bugfixes
+
+04.07.2015 - Version 0.9.0
+* Add user images
 * Small interface imrpovements and bugfixes
 
 ## Credits
