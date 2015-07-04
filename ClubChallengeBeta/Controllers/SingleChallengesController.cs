@@ -21,6 +21,7 @@ namespace ClubChallengeBeta.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
             AspNetUser currentUser = db.AspNetUsers.Find(currentUserId);
+            ViewBag.ClubName = currentUser.Club.Name;
             int currentUserClubId = currentUser.Club.ClubId;
             var singleChallenges = db.SingleChallenges.Include(s => s.AspNetUser).Include(s => s.AspNetUser1).Include(s => s.AspNetUser2);
             singleChallenges = singleChallenges.Where(s => s.AspNetUser1.ClubId == currentUserClubId);
