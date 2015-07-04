@@ -1,8 +1,7 @@
 # Project Name
 
 Club Challenge
-Live demo at: https://clubchallenge.somee.com (not working - no sotrage)
-Live demo at: https://clubchallenge1.somee.com
+Live demo at: https://clubchallenge.somee.com
 
 ## Installation
 
@@ -64,6 +63,9 @@ and ofc... dont try IE8 :D
 
 04.07.2015 - Version 0.9.0
 * Add user images
+* Small interface imrpovements and bugfixes
+
+05.07.2015 - Version 0.9.5
 * Small interface imrpovements and bugfixes
 
 ## Credits
