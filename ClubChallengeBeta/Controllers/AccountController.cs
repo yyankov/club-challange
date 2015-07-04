@@ -142,12 +142,31 @@ namespace ClubChallengeBeta.Controllers
         // POST: /Account/Manage
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Manage(UpdateAccountViewModel user)
+        public ActionResult Manage(UpdateAccountViewModel user, HttpPostedFileBase image)
         {
             var currentUserId = User.Identity.GetUserId();
+            var dbUser = db.AspNetUsers.SingleOrDefault(e => e.Id == currentUserId);
             if (ModelState.IsValid)
             {
-                var dbUser = db.AspNetUsers.SingleOrDefault(e => e.Id == currentUserId);
+                if (image != null)
+                {
+                    if (dbUser.UserImages.Count == 0)
+                    {
+                        var userImage = dbUser.UserImages.SingleOrDefault();
+                        userImage.ImageMimeType = image.ContentType;
+                        userImage.ImageData = new byte[image.ContentLength];
+                        image.InputStream.Read(userImage.ImageData, 0, image.ContentLength);
+                        db.UserImages.Add(userImage);
+                    }
+                    else
+                    {
+                        var userImage = new UserImage();
+                        userImage.ImageMimeType = image.ContentType;
+                        userImage.ImageData = new byte[image.ContentLength];
+                        image.InputStream.Read(userImage.ImageData, 0, image.ContentLength);
+                        db.Entry(userImage).State = EntityState.Modified;
+                    }
+                }
                 dbUser.PhoneNumber = user.PhoneNumber;
                 dbUser.Email = user.EmailAddress;
                 db.Entry(dbUser).State = EntityState.Modified;

@@ -2,7 +2,7 @@
 @using ClubChallengeBeta.Models;
 @using Microsoft.AspNet.Identity;
 
-@using (Html.BeginForm("Manage", "Account", FormMethod.Post))
+@using (Html.BeginForm("Manage", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <h4>My account</h4>
@@ -11,7 +11,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @disabled="disabled" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @disabled = "disabled" })
             @Html.HiddenFor(m => m.UserName)
         </div>
     </div>
@@ -25,6 +25,18 @@
         @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImageData, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @if (Model.ImageData == null)
+            { }
+            else
+            {
+                <img width="150" height="150" src="@Url.Action("GetIcon", "Club", new { @id = Model.ClubId })" />
+            }
+            <div>Upload club logo: <input type="file" name="Image" /> </div>
         </div>
     </div>
     <div class="form-group">
