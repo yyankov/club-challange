@@ -344,6 +344,7 @@
     <Content Include="Views\Challenges\WaitingApproval.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\SingleChallenges\_ClaimVictory.cshtml" />
+    <Content Include="Views\TeamChallenges\_ClaimVictory.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

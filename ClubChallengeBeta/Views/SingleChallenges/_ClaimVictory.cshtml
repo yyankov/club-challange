@@ -18,7 +18,13 @@
         </script>
         <div class="modal-body">
             <div class="row">
-                @Html.ValidationSummary()
+                <div class="row">
+                    <div class="alert alert-warning score-alert" style="display:none;" role="alert">
+                        <strong>
+                            Please insert a valid score!
+                        </strong>
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
@@ -50,7 +56,7 @@
                         <strong></strong>
                     </div>
                     <div class="editor-field">
-                        @Html.TextBoxFor(m => m.Sets1, new { @class = "form-control sets-1" })
+                        @Html.TextBoxFor(m => m.Sets1, new { @class = "form-control sets sets-1" })
                         @Html.HiddenFor(m => m.SinglesChallengeId)
                     </div>
                 </div>
@@ -59,7 +65,7 @@
                         <strong></strong>
                     </div>
                     <div class="editor-field">
-                        @Html.TextBoxFor(m => m.Sets2, new { @class = "form-control sets-2" })
+                        @Html.TextBoxFor(m => m.Sets2, new { @class = "form-control sets sets-2" })
                     </div>
                 </div>
             </div>
@@ -141,18 +147,19 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        $(".sets-1").change(function () {
+        $(".sets").change(function () {
             if (parseInt($(".sets-1").val()) + parseInt($(".sets-2").val()) === 3) {
                 $(".game-3").show();
-            } else {
+                $(".score-alert").hide();
+            } else if (parseInt($(".sets-1").val()) + parseInt($(".sets-2").val()) === 2) {
+                if (parseInt($(".sets-1").val()) === 1) {
+                    $(".score-alert").show();
+                } else {
+                    $(".score-alert").hide();
+                }
                 $(".game-3").hide();
-            }
-        });
-        $(".sets-2").change(function () {
-            if (parseInt($(".sets-1").val()) + parseInt($(".sets-2").val()) === 3) {
-                $(".game-3").show();
             } else {
-                $(".game-3").hide();
+                $(".score-alert").show();
             }
         });
     });
