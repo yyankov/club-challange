@@ -31,7 +31,7 @@
                         <li>@Html.ActionLink("Clubs", "Index", "Club")</li>
                         if (NavbarUtils.HasClub(User.Identity.GetUserId()))
                         {
-                            <li>@Html.ActionLink("Challenges", "Index", "SingleChallenges")</li>
+                            <li>@Html.ActionLink("Challenges", "List", "Challenges")</li>
                         }
                     }
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>

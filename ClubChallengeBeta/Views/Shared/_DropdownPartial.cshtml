@@ -4,26 +4,31 @@
 <ul class="nav navbar-nav navbar-right">
     @if (Request.IsAuthenticated)
     {
-        if (NavbarUtils.IsClubUser(User.Identity.GetUserId()))
+        if (NavbarUtils.IsClubUser(User.Identity.GetUserId()) && NavbarUtils.HasClub(User.Identity.GetUserId()))
         {
             <li>
-                <a class="ion-email-unread" title="Waiting Approval"style="font-size: 20px;" href="@Url.Action("WaitingApproval", "Challenges")">@NavbarUtils.PendingChallenges(User.Identity.GetUserId())</a>
+                <a class="ion-email-unread icon-notify" title="Waiting Approval" href="@Url.Action("WaitingApproval", "Challenges")">
+                    <span class="badge badge-notify">@NavbarUtils.PendingChallenges(User.Identity.GetUserId())</span>
+                </a>
             </li>
         }
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                 <img class="user-icon" src="@Url.Action("GetImage", "Account", new { @id = User.Identity.GetUserId() })" />
                 @User.Identity.GetUserName()
-            <span class="caret"></span></a>
+                <span class="caret"></span>
+            </a>
             <ul class="dropdown-menu" role="menu">
-                <li>@Html.ActionLink("Account", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+                <li>
+                    <a class="fa fa-lg fa-cog" href="@Url.Action("Manage", "Account")"> Manage</a>
+                </li>
                 <li class="divider"></li>
                 <li>
                     <a class="icon icon ion-ios-people" href="@Url.Action("Index", "UsersClub")"> My Club</a>
                 </li>
                 <li>
                     <a class="icon ion-ios-tennisball-outline" href="@Url.Action("Index", "Challenges")"> My Challenges</a>
-               </li>
+                </li>
                 <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-ban"> Log off</i></a></li>
 
             </ul>

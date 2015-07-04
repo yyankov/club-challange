@@ -15,19 +15,24 @@
 
     @foreach (var item in Model)
     {
+        {
+    ViewBag.Title = item.UserName;
+    }
         <tr>
             <td>
+                <img class="user-icon" src="@Url.Action("GetImage", "Account", new { @id = item.UserId })" title="@ViewBag.Title"/>
                 @if (item.IsOwner)
                 {
                     <i class="glyphicon glyphicon-star"></i>
                 }
+
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
             <td>
-                <a class="glyphicon glyphicon-search" href="@Url.Action("Details", "UsersClub", new { @id = item.UserId })"></a>
+                <a class="glyphicon glyphicon-search" href="@Url.Action("Details", "UsersClub", new { @id = item.UserId })" title="View Profile"></a>
                 @if (User.Identity.GetUserId() != item.UserId)
                 {
                     <a class="icon ion-person" href="@Url.Action("Challenge", "UsersClub", new { @id = item.UserId })"> </a>
@@ -35,7 +40,7 @@
 
                     if (ViewBag.isOwner)
                     {
-                         <a class="fa fa-ban fa-lg"  href="@Url.Action("Kick", "UsersClub", new { @id = item.UserId })"></a>
+                        <a class="fa fa-ban fa-lg" href="@Url.Action("Kick", "UsersClub", new { @id = item.UserId })"></a>
                     }
                 }
 

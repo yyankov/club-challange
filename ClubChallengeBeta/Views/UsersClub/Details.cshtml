@@ -34,12 +34,12 @@
                     <div class="btn-group">
                         @if (Model.CanChallenge)
                         {
-                            <a class="btn btn-sm btn-primary" href="@Url.Action("Challenge", "UsersClub", new { @id = Model.ClubId })"><i class="icon ion-person button-icon"></i>Single Challenge</a>
-                            <a class="modal-link btn btn-sm btn-danger" href="@Url.Action("MultiChallenge", "UsersClub", new { @id = Model.ClubId })"><i class="icon ion-person-add button-icon"></i>Team Challenge</a>
+                            <a class="btn btn-sm btn-primary" href="@Url.Action("Challenge", "UsersClub", new { @id = Model.ClubId })"><i class="icon ion-person button-icon button-icon"></i>Single Challenge</a>
+                            <a class="modal-link btn btn-sm btn-danger" href="@Url.Action("MultiChallenge", "UsersClub", new { @id = Model.ClubId })"><i class="icon ion-person-add button-icon button-icon"></i>Team Challenge</a>
                         }
                         else
                         {
-                            <a class="btn btn-sm btn-primary" href="@Url.Action("Manage", "Account")"><i class="glyphicon glyphicon-pencil"></i>Update Info</a>
+                            <a class="btn btn-sm btn-primary" href="@Url.Action("Manage", "Account")"><i class="glyphicon glyphicon-pencil button-icon"></i>Update Info</a>
                         }
                     </div>
                 </div>
