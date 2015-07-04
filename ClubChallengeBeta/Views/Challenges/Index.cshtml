@@ -58,6 +58,11 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Result)
+                        <br />
+                        @if (item.PendingApproval)
+                        {
+                            @Html.DisplayFor(modelItem => item.ScoreText)
+                        }
                     </td>
                     <td>
                         @if (item.CanAcceptReject)
@@ -162,6 +167,11 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Result)
+                        <br />
+                        @if (item.PendingApproval)
+                        {
+                            @Html.DisplayFor(modelItem => item.ScoreText)
+                        }
                     </td>
                     <td>
                         @if (item.CanAcceptReject)
