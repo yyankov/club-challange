@@ -231,6 +231,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClubViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ImageViewModels.cs" />
     <Compile Include="Models\MyChallengesViewModel.cs" />
     <Compile Include="Models\SingleChallengeViewModels.cs" />
     <Compile Include="Models\TeamChallengesViewModels.cs" />
@@ -351,6 +352,7 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\SingleChallenges\_ClaimVictory.cshtml" />
     <Content Include="Views\TeamChallenges\_ClaimVictory.cshtml" />
+    <Content Include="Views\Club\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
