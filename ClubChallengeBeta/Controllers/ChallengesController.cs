@@ -80,9 +80,19 @@ namespace ClubChallengeBeta.Controllers
             result.SingleChallenges = singleChallengesView;
             return View(result);
         }
+
         private bool HasClub(AspNetUser currentUser)
         {
             return currentUser.Club != null;
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 
