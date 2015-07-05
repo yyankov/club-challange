@@ -4,11 +4,11 @@
 <br />
 <p><b>Waiting approval</b></p>
 <ul class="nav nav-tabs">
-    <li class="active"><a data-toggle="tab" href="#single">Singles Challenges</a></li>
+    <li><a data-toggle="tab" href="#single">Singles Challenges</a></li>
     <li><a data-toggle="tab" href="#multi">Team Challenges</a></li>
 </ul>
 <div class="tab-content">
-    <div id="single" class="tab-pane fade in active">
+    <div id="single" class="tab-pane">
         <table class="table">
             <tr>
                 <th>
@@ -67,7 +67,7 @@
 
         </table>
     </div>
-    <div id="multi" class="tab-pane fade">
+    <div id="multi" class="tab-pane">
         <table class="table">
             <tr>
                 <th>
@@ -131,3 +131,18 @@
         </table>
     </div>
 </div>
+<script type="text/javascript">
+    $(function () {
+        $('a[data-toggle="tab"]').on('click', function (e) {
+            localStorage.setItem('lastTab-waiting', $(e.target).attr('href'));
+        });
+
+        var lastTab = localStorage.getItem('lastTab-waiting');
+
+        if (lastTab) {
+            $('a[href="' + lastTab + '"]').click();
+        } else {
+            $('a[href="#single"]').click();
+        }
+    });
+</script>
