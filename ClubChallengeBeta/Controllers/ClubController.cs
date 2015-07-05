@@ -17,6 +17,8 @@ using System.IO;
 
 namespace ClubChallengeBeta.Controllers
 {
+
+    [Authorize]
     public class ClubController : Controller
     {
         private ClubChallengeEntities db = new ClubChallengeEntities();
