@@ -68,6 +68,10 @@ and ofc... dont try IE8 :D
 05.07.2015 - Version 0.9.5
 * Small interface imrpovements and bugfixes
 
+05.07.2015 - Version 0.9.7
+* Redesign
+* Handle auth and 404 errors
+
 ## Credits
 
 Dimitar Kaludov
