@@ -12,6 +12,7 @@ using ClubChallengeBeta.Models;
 
 namespace ClubChallengeBeta.Controllers
 {
+    [Authorize]
     public class UsersClubController : Controller
     {
         private ClubChallengeEntities db = new ClubChallengeEntities();

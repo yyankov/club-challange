@@ -9,7 +9,7 @@
 <div class="modal-body">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Team Challenge</h4>
+        <h4 class="modal-title">Claim Team Victory</h4>
     </div>
     @using (Html.BeginForm("ClaimVictory", "TeamChallenges", FormMethod.Post, new { @id = "multi" }))
     {
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-2 col-xs-6">
                     <div class="editor-label">
                         <strong>Challengers</strong>
                     </div>
@@ -33,7 +33,7 @@
                         <input type="text" class="form-control" disabled value="@Model.User1Name">
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4 col-md-4 col-xs-6">
                     <div class="editor-label">
                         <strong>Opponents</strong>
                     </div>
@@ -43,14 +43,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4 col-sm-offset-2 col-md-4 col-md-offset-2 col-xs-6">
                     <div class="editor-label">
                     </div>
                     <div class="editor-field">
                         <input type="text" class="form-control" disabled value="@Model.User2Name">
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4 col-md-4 col-xs-6">
                     <div class="editor-label">
                     </div>
                     <div class="editor-field">
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-2 col-sm-offset-4">
+                <div class="col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2 col-xs-6">
                     <div class="editor-label">
                         <strong></strong>
                     </div>
@@ -74,7 +74,7 @@
                         @Html.HiddenFor(m => m.TeamChallengeId)
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-xs-6">
                     <div class="editor-label">
                         <strong></strong>
                     </div>
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-2 col-sm-offset-4">
+                <div class="col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2 col-xs-6">
                     <div class="editor-label">
                         <strong></strong>
                     </div>
@@ -98,7 +98,7 @@
                         @Html.TextBoxFor(m => m.GameScores[0].Games1, new { @class = "form-control" })
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-xs-6">
                     <div class="editor-label">
                         <strong></strong>
                     </div>
@@ -108,7 +108,7 @@
                 </div>
             </div>
             <div class="row" style="margin-top:5px;">
-                <div class="col-sm-2 col-sm-offset-4">
+                <div class="col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2 col-xs-6">
                     <div class="editor-label">
                         <strong></strong>
                     </div>
@@ -116,7 +116,7 @@
                         @Html.TextBoxFor(m => m.GameScores[1].Games1, new { @class = "form-control" })
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-xs-6">
                     <div class="editor-label">
                         <strong></strong>
                     </div>
@@ -126,7 +126,7 @@
                 </div>
             </div>
             <div class="row game-3" style="display: none; margin-top: 5px;">
-                <div class="col-sm-2 col-sm-offset-4">
+                <div class="col-md-offset-4 col-md-2 col-sm-offset-4 col-sm-2 col-xs-6">
                     <div class="editor-label">
                         <strong></strong>
                     </div>
@@ -134,7 +134,7 @@
                         @Html.TextBoxFor(m => m.GameScores[2].Games1, new { @class = "form-control" })
                     </div>
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-2 col-md-2 col-xs-6">
                     <div class="editor-label">
                         <strong></strong>
                     </div>
@@ -148,7 +148,7 @@
 
         <hr />
         <div class="row">
-            <div class="btn-group pull-right" role="group" style="margin-right:15px;">
+            <div class="col-md-6 col-md-offset-3 btn-group">
                 <button type="button" class="btn btn-default" data-dismiss="modal">
                     Cancel
                 </button>
