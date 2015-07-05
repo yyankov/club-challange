@@ -63,7 +63,7 @@ namespace ClubChallengeBeta.Models
             {
                 CanDeclareWin = true;
             }
-            else if (Result == "Pending")
+            else if (Result == "Waiting approval")
             {
                 PendingApproval = true;
             }
