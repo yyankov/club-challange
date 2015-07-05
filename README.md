@@ -72,6 +72,9 @@ and ofc... dont try IE8 :D
 * Redesign
 * Handle auth and 404 errors
 
+05.07.2015 - Version 0.9.8
+* Display singles scores in table
+
 ## Credits
 
 Dimitar Kaludov
