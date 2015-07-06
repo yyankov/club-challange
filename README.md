@@ -74,6 +74,10 @@ and ofc... dont try IE8 :D
 05.07.2015 - Version 0.9.8
 * Display singles scores in table
 
+06.07.2015 - Version 0.9.9
+* Remember active pills
+* Improve 'on error' navigation
+
 ## Credits
 
 Dimitar Kaludov
