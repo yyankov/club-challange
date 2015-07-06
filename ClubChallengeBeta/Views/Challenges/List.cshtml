@@ -169,3 +169,19 @@
         </table>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $('a[data-toggle="tab"]').on('click', function (e) {
+            localStorage.setItem('all-chall-lastTab', $(e.target).attr('href'));
+        });
+
+        var lastTab = localStorage.getItem('all-chall-lastTab');
+
+        if (lastTab) {
+            $('a[href="' + lastTab + '"]').click();
+        } else {
+            $('a[href="#single"]').click();
+        }
+    });
+</script>
