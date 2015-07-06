@@ -91,4 +91,4 @@ Zhuli91
 
 ## License
 
-TODO
+<a href='http://opensource.org/licenses/MIT'>MIT</a>
