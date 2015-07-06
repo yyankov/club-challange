@@ -1,6 +1,5 @@
-# Project Name
+# Club Challenge
 
-Club Challenge
 Live demo at: https://clubchallenge.somee.com
 
 ## Installation
