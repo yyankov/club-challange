@@ -16,7 +16,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2015 15:50:28</publishTime>
     </File>
     <File Include="bin/ClubChallengeBeta.dll">
-      <publishTime>07/04/2015 18:48:05</publishTime>
+      <publishTime>07/07/2015 21:52:21</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>06/07/2015 15:50:30</publishTime>
@@ -93,6 +93,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/WebGrease.dll">
       <publishTime>06/07/2015 15:50:34</publishTime>
     </File>
+    <File Include="Content/blueimp-gallery.css">
+      <publishTime>07/05/2015 02:43:34</publishTime>
+    </File>
+    <File Include="Content/blueimp-gallery.min.css">
+      <publishTime>07/05/2015 02:43:34</publishTime>
+    </File>
+    <File Include="Content/bootstrap-image-gallery.css">
+      <publishTime>07/05/2015 02:43:34</publishTime>
+    </File>
+    <File Include="Content/bootstrap-image-gallery.min.css">
+      <publishTime>07/05/2015 02:43:34</publishTime>
+    </File>
     <File Include="Content/bootstrap-social.css">
       <publishTime>06/07/2015 17:57:50</publishTime>
     </File>
@@ -123,6 +135,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/cicon.png">
       <publishTime>06/11/2015 18:41:08</publishTime>
     </File>
+    <File Include="Content/default.png">
+      <publishTime>07/05/2015 02:43:34</publishTime>
+    </File>
     <File Include="Content/font-awesome.css">
       <publishTime>06/07/2015 18:08:26</publishTime>
     </File>
@@ -133,7 +148,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2015 19:23:38</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>07/04/2015 18:47:27</publishTime>
+      <publishTime>07/05/2015 12:14:46</publishTime>
     </File>
     <File Include="Content/social-networks.jpg">
       <publishTime>06/20/2015 19:23:38</publishTime>
@@ -195,6 +210,18 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="packages.config">
       <publishTime>06/08/2015 23:57:56</publishTime>
     </File>
+    <File Include="Scripts/blueimp-gallery.js">
+      <publishTime>07/05/2015 02:43:34</publishTime>
+    </File>
+    <File Include="Scripts/blueimp-gallery.min.js">
+      <publishTime>07/05/2015 02:43:34</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-image-gallery.js">
+      <publishTime>07/05/2015 02:43:34</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-image-gallery.min.js">
+      <publishTime>07/05/2015 02:43:34</publishTime>
+    </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>06/07/2015 15:50:39</publishTime>
     </File>
@@ -244,7 +271,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2015 19:23:38</publishTime>
     </File>
     <File Include="Scripts/_references.js">
-      <publishTime>07/04/2015 15:20:12</publishTime>
+      <publishTime>07/05/2015 02:43:34</publishTime>
     </File>
     <File Include="Views/Account/ChangePassword.cshtml">
       <publishTime>06/21/2015 20:07:53</publishTime>
@@ -259,28 +286,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2015 19:23:38</publishTime>
     </File>
     <File Include="Views/Account/Manage.cshtml">
-      <publishTime>07/04/2015 18:47:27</publishTime>
+      <publishTime>07/05/2015 02:43:34</publishTime>
     </File>
     <File Include="Views/Account/Register.cshtml">
       <publishTime>06/21/2015 20:07:53</publishTime>
     </File>
     <File Include="Views/Account/_ChangePasswordPartial.cshtml">
-      <publishTime>06/21/2015 20:07:53</publishTime>
+      <publishTime>07/05/2015 02:43:34</publishTime>
     </File>
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
-      <publishTime>06/08/2015 20:20:00</publishTime>
+      <publishTime>07/04/2015 21:00:41</publishTime>
     </File>
     <File Include="Views/Account/_RemoveAccountPartial.cshtml">
       <publishTime>06/07/2015 14:53:18</publishTime>
     </File>
     <File Include="Views/Account/_SetPasswordPartial.cshtml">
-      <publishTime>06/07/2015 14:53:18</publishTime>
+      <publishTime>07/05/2015 02:43:34</publishTime>
     </File>
     <File Include="Views/Challenges/Index.cshtml">
-      <publishTime>07/04/2015 16:01:21</publishTime>
+      <publishTime>07/06/2015 20:31:41</publishTime>
+    </File>
+    <File Include="Views/Challenges/List.cshtml">
+      <publishTime>07/06/2015 20:54:38</publishTime>
     </File>
     <File Include="Views/Challenges/WaitingApproval.cshtml">
-      <publishTime>07/04/2015 14:00:51</publishTime>
+      <publishTime>07/06/2015 20:31:41</publishTime>
     </File>
     <File Include="Views/Club/Create.cshtml">
       <publishTime>06/20/2015 19:23:38</publishTime>
@@ -289,22 +319,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2015 19:23:38</publishTime>
     </File>
     <File Include="Views/Club/Details.cshtml">
-      <publishTime>07/04/2015 15:20:12</publishTime>
+      <publishTime>07/06/2015 21:31:18</publishTime>
     </File>
     <File Include="Views/Club/Edit.cshtml">
-      <publishTime>06/20/2015 19:23:38</publishTime>
+      <publishTime>07/06/2015 21:31:51</publishTime>
     </File>
     <File Include="Views/Club/Gallery.cshtml">
-      <publishTime>07/04/2015 16:01:21</publishTime>
+      <publishTime>07/05/2015 02:43:34</publishTime>
     </File>
     <File Include="Views/Club/Index.cshtml">
-      <publishTime>07/04/2015 15:20:12</publishTime>
+      <publishTime>07/06/2015 20:31:41</publishTime>
+    </File>
+    <File Include="Views/Error/Error.cshtml">
+      <publishTime>07/05/2015 12:14:46</publishTime>
+    </File>
+    <File Include="Views/Error/Index.cshtml">
+      <publishTime>07/05/2015 12:14:46</publishTime>
+    </File>
+    <File Include="Views/Error/NoPermissions.cshtml">
+      <publishTime>07/05/2015 12:14:46</publishTime>
     </File>
     <File Include="Views/Home/About.cshtml">
       <publishTime>06/07/2015 14:52:59</publishTime>
     </File>
     <File Include="Views/Home/Contact.cshtml">
-      <publishTime>06/07/2015 14:52:59</publishTime>
+      <publishTime>07/05/2015 02:43:35</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>06/20/2015 19:23:38</publishTime>
@@ -313,10 +352,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2015 14:53:18</publishTime>
     </File>
     <File Include="Views/Shared/_DropdownPartial.cshtml">
-      <publishTime>07/04/2015 18:47:27</publishTime>
+      <publishTime>07/07/2015 21:29:12</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/04/2015 15:20:12</publishTime>
+      <publishTime>07/06/2015 20:31:41</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>06/09/2015 01:16:42</publishTime>
@@ -325,13 +364,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/11/2015 18:41:08</publishTime>
     </File>
     <File Include="Views/SingleChallenges/Index.cshtml">
-      <publishTime>07/04/2015 15:20:12</publishTime>
+      <publishTime>07/05/2015 02:43:35</publishTime>
     </File>
     <File Include="Views/SingleChallenges/MyChallenges.cshtml">
       <publishTime>06/19/2015 21:55:10</publishTime>
     </File>
     <File Include="Views/SingleChallenges/_ClaimVictory.cshtml">
-      <publishTime>07/04/2015 14:00:51</publishTime>
+      <publishTime>07/05/2015 12:30:48</publishTime>
     </File>
     <File Include="Views/TeamChallenges/Details.cshtml">
       <publishTime>06/20/2015 19:23:38</publishTime>
@@ -340,13 +379,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/20/2015 19:23:38</publishTime>
     </File>
     <File Include="Views/TeamChallenges/_ClaimVictory.cshtml">
-      <publishTime>07/04/2015 14:00:51</publishTime>
+      <publishTime>07/05/2015 12:30:48</publishTime>
     </File>
     <File Include="Views/UsersClub/Details.cshtml">
-      <publishTime>07/04/2015 18:47:27</publishTime>
+      <publishTime>07/06/2015 20:31:41</publishTime>
     </File>
     <File Include="Views/UsersClub/Index.cshtml">
-      <publishTime>07/04/2015 15:20:12</publishTime>
+      <publishTime>07/05/2015 02:43:35</publishTime>
     </File>
     <File Include="Views/UsersClub/_MultiChallenge.cshtml">
       <publishTime>06/21/2015 20:07:53</publishTime>
@@ -358,7 +397,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2015 14:52:59</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/04/2015 11:45:09</publishTime>
+      <publishTime>07/07/2015 21:52:23</publishTime>
     </File>
   </ItemGroup>
 </Project>
