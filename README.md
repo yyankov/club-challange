@@ -78,6 +78,10 @@ and ofc... dont try IE8 :D
 * Remember active pills
 * Improve 'on error' navigation
 
+06.07.2015 - Version 1.0.0
+* Fixed bugs
+* Changed UI fonts
+
 ## Credits
 
 Dimitar Kaludov
