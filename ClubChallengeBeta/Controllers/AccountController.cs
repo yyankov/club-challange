@@ -85,7 +85,7 @@ namespace ClubChallengeBeta.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var user = new ApplicationUser() { UserName = model.UserName,Email=model.EmailAddress,PhoneNumber=model.PhoneNumber };
+                    var user = new ApplicationUser() { UserName = model.UserName, Email = model.EmailAddress, PhoneNumber = model.PhoneNumber };
                     var result = await UserManager.CreateAsync(user, model.Password);
 
                     var roleStore = new RoleStore<IdentityRole>(context);
@@ -319,35 +319,55 @@ namespace ClubChallengeBeta.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {
-            if (User.Identity.IsAuthenticated)
+            using (var context = new ApplicationDbContext())
             {
-                return RedirectToAction("ChangePassword");
-            }
-
-            if (ModelState.IsValid)
-            {
-                // Get the information about the user from the external login provider
-                var info = await AuthenticationManager.GetExternalLoginInfoAsync();
-                if (info == null)
+                if (User.Identity.IsAuthenticated)
                 {
-                    return View("ExternalLoginFailure");
+                    return RedirectToAction("ChangePassword");
                 }
-                var user = new ApplicationUser() { UserName = model.UserName };
-                var result = await UserManager.CreateAsync(user);
-                if (result.Succeeded)
+
+                if (ModelState.IsValid)
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    // Get the information about the user from the external login provider
+                    var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+                    if (info == null)
+                    {
+                        return View("ExternalLoginFailure");
+                    }
+                    var user = new ApplicationUser() { UserName = model.UserName };
+                    var result = await UserManager.CreateAsync(user);
+
+
+                    var roleStore = new RoleStore<IdentityRole>(context);
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+                    var userStore = new UserStore<ApplicationUser>(context);
+                    var userManager = new UserManager<ApplicationUser>(userStore);
                     if (result.Succeeded)
                     {
+                        userManager.AddToRole(user.Id, "Private");
                         await SignInAsync(user, isPersistent: false);
-                        return RedirectToLocal(returnUrl);
-                    }
-                }
-                AddErrors(result);
-            }
+                        var currentUser = db.AspNetUsers.Find(User.Identity.GetUserId());
+                        var userImage = new UserImage();
+                        userImage.UserId = user.Id;
 
-            ViewBag.ReturnUrl = returnUrl;
-            return View(model);
+                        userImage.ImageData = System.IO.File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + "Content/default.png");
+                        userImage.ImageMimeType = "image/png";
+                        db.UserImages.Add(userImage);
+                        db.SaveChanges();
+                        result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                        if (result.Succeeded)
+                        {
+                            await SignInAsync(user, isPersistent: false);
+                            return RedirectToLocal(returnUrl);
+                        }
+                    }
+                    AddErrors(result);
+                }
+
+                ViewBag.ReturnUrl = returnUrl;
+                return View(model);
+            }
         }
 
         //
